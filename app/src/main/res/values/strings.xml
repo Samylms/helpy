@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Helpy</string>
+
+    <!--NeedHelpTopicListActivity-->
+    <string name="title_activity_need_help_topic_list">NeedHelpTopicListActivity</string>
+
 </resources>
