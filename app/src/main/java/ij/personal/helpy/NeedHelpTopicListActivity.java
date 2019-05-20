@@ -14,6 +14,7 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_need_help_topic_list);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.title_activity_need_help_topic_list));
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
