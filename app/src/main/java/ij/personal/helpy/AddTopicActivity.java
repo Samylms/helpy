@@ -3,7 +3,7 @@ package ij.personal.helpy;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AddSubjectActivity extends AppCompatActivity {
+public class AddTopicActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
