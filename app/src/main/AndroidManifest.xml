@@ -16,7 +16,7 @@
             android:label="@string/title_activity_need_help_topic_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Contact_Activity.Contact_Activity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivityTest" />
         <activity
             android:name=".authentication.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
