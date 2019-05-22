@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".NeedHelpTopicListActivity"
-    tools:showIn="@layout/activity_need_help_topic_list">
+    tools:showIn="@layout/activity_need_help_topic_list" >
 
-    <Button
+    <!--Contenu de l'écran-->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="test"/>
+        android:layout_height="wrap_content"
+        android:text="@string/title_which_subject"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

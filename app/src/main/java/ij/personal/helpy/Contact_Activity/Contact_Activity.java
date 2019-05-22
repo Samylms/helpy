@@ -15,7 +15,7 @@ public class Contact_Activity extends AppCompatActivity {
 
 
     //for log
-    private static final String Tag = "MainActivity";
+    private static final String Tag = "MainActivityTest";
     private ArrayList<String> mTextContact = new ArrayList<>();
     private ArrayList<String> mButtonContact = new ArrayList<>();
     private Context mContext;

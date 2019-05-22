@@ -3,5 +3,8 @@
 
     <!--NeedHelpTopicListActivity-->
     <string name="title_activity_need_help_topic_list">NeedHelpTopicListActivity</string>
+    <string name="title_need_help">J\'ai besoin d\'aide</string>
+    <string name="title_can_help">Je peux aider</string>
+    <string name="title_which_subject">Pour quel sujet ?</string>
 
 </resources>
