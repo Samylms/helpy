@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import ij.personal.helpy.MainActivity;
+import ij.personal.helpy.MainActivityTest;
 import ij.personal.helpy.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivityTest.class));
             }
         });
     }

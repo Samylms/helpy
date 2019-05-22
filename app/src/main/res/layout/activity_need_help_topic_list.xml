@@ -31,7 +31,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_plus_button_white"
-        app:backgroundTint="@color/red"
+        app:backgroundTint="@color/grey"
         app:fabSize="auto"/>
 
 </android.support.design.widget.CoordinatorLayout>

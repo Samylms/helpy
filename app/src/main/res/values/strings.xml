@@ -7,4 +7,7 @@
     <string name="title_can_help">Je peux aider</string>
     <string name="title_which_subject">Pour quel sujet ?</string>
 
+    <!--AddSubjectActivity-->
+    <string name="title_add_new_subject">Ajouter un nouveau sujet</string>
+
 </resources>
