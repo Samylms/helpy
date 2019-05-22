@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignInActivity"
+        <activity android:name=".authentication.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".NeedHelpTopicListActivity"
@@ -18,7 +18,7 @@
         <activity android:name=".Contact_Activity.Contact_Activity"></activity>
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".authentication.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

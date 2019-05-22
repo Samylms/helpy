@@ -1,9 +1,11 @@
-package ij.personal.helpy;
+package ij.personal.helpy.authentication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import ij.personal.helpy.R;
 
 public class SignInActivity extends AppCompatActivity {
 
