@@ -1,4 +1,4 @@
-package ij.personal.helpy;
+package ij.personal.helpy.Need_Help;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,10 @@ import java.util.List;
 
 import ij.personal.helpy.Models.Class;
 import ij.personal.helpy.Models.Topic;
+import ij.personal.helpy.R;
+import ij.personal.helpy.TopicAdapter;
 
-public class NeedHelpTopicListActivity extends AppCompatActivity {
+public class TopicListNeedHelpActivity extends AppCompatActivity {
 
     private RecyclerView topicRecyclerView;
     private RecyclerView.Adapter topicAdapter;
@@ -28,7 +30,7 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_need_help_topic_list);
+        setContentView(R.layout.activity_topic_list_need_help);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,7 +40,7 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent intent = new Intent(getApplicationContext(), AddTopicActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddSubjectNeedHelpActivity.class);
                 startActivity(intent);
             }
         });

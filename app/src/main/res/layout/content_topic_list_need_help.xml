@@ -8,7 +8,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:mContext=".NeedHelpTopicListActivity"
-    tools:showIn="@layout/activity_need_help_topic_list" >
+    tools:showIn="@layout/activity_topic_list_need_help" >
 
     <!--Contenu de l'écran-->
     <TextView

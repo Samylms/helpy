@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">Helpy</string>
+    <string name="cancel">Annuler</string>
+    <string name="validate">Valider</string>
 
-    <!--NeedHelpTopicListActivity-->
+    <!--TopicListNeedHelpActivity-->
     <string name="title_activity_need_help_topic_list">NeedHelpTopicListActivity</string>
     <string name="title_need_help">J\'ai besoin d\'aide</string>
     <string name="title_can_help">Je peux aider</string>
     <string name="title_which_subject">Pour quel sujet ?</string>
 
-    <!--AddTopicActivity-->
+    <!--AddSubjectNeedHelpActivity-->
     <string name="title_add_new_subject">Ajouter un nouveau sujet</string>
+    <string name="subject_name">Nom du sujet</string>
+    <string name="general_subject">Matière</string>
+    <string name="text_inscription_need_helper">Vous serez automatiquement inscrit comme <b><font color="#FF0000">demandeur</font></b> d\'aide pour ce sujet.</string>
 
 </resources>

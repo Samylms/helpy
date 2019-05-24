@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddTopicActivity"
+        <activity android:name=".Need_Help.AddSubjectNeedHelpActivity"
             android:label="@string/title_add_new_subject"
-            android:theme="@style/Theme.AppCompat.Dialog"/>
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".authentication.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NeedHelpTopicListActivity"
+            android:name=".Need_Help.TopicListNeedHelpActivity"
             android:label="@string/title_activity_need_help_topic_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Contact_Activity.Contact_Activity" />

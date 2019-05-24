@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_need_help_topic_list" />
+    <include layout="@layout/content_topic_list_need_help" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_subject"

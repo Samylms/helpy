@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import ij.personal.helpy.Need_Help.TopicListNeedHelpActivity;
+
 public class MainActivityTest extends AppCompatActivity {
 
     @Override
@@ -17,7 +19,7 @@ public class MainActivityTest extends AppCompatActivity {
         btnNeedHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), NeedHelpTopicListActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), TopicListNeedHelpActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
