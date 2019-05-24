@@ -84,29 +84,33 @@ public class Class {
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
 
+            classTopics = new ArrayList<>();
+            JsonArray jsonArrayTopics = jsonResponce.get("sujet").getAsJsonArray();
+
+            for (JsonElement jsonTopic: jsonArrayTopics) {
+
+                int idTopic = jsonTopic.getAsJsonObject().get("idSujet").getAsInt();
+                String title = jsonTopic.getAsJsonObject().get("titre").getAsString();
+                int idSubject = jsonTopic.getAsJsonObject().get("idMatiere").getAsInt();
+                Topic topic = new Topic(idTopic, title, this.id, idSubject);
+
+                classTopics.add(topic);
+
+            }
+            Log.d("debug" , String.valueOf(this.id));
+            Log.d("debug", classTopics.toString());
+            return classTopics;
+
         } catch (ExecutionException e) {
             e.printStackTrace();
             Log.d("DEBUG", "executionException");
+            Log.d("DEBUG", e.toString());
         } catch (InterruptedException e) {
             e.printStackTrace();
             Log.d("DEBUG", "InterruptionException");
+            Log.d("DEBUG", e.toString());
         }
+        return null;
 
-        classTopics = new ArrayList<>();
-        JsonArray jsonArrayTopics = jsonResponce.get("sujet").getAsJsonArray();
-
-        for (JsonElement jsonTopic: jsonArrayTopics) {
-
-            int idTopic = jsonTopic.getAsJsonObject().get("idSujet").getAsInt();
-            String title = jsonTopic.getAsJsonObject().get("titre").getAsString();
-            int idSubject = jsonTopic.getAsJsonObject().get("idMatiere").getAsInt();
-            Topic topic = new Topic(idTopic, title, this.id, idSubject);
-
-            classTopics.add(topic);
-
-        }
-        Log.d("debug" , String.valueOf(this.id));
-        Log.d("debug", classTopics.toString());
-        return classTopics;
     }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     private List<Topic> mClassTopics;
     private Context mContext;
     private int loggedStudentId;
+    private int totalProposalRequest;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -73,19 +75,21 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.txtTopicSubject.setText(String.valueOf(mClassTopics.get(position).getTopicSubjectName(mContext)));
 
         final Topic topic = mClassTopics.get(position);
-        List<Request> topicRequests = topic.getTopicRequests(mContext);
-        int typeProposalCount = 0;
+        totalProposalRequest = 0;
         loggedStudentId = 1;
-        for (Request request: topicRequests){
-            if (request.getType().equals("Proposition")){
-                typeProposalCount += 1;
-            }else{
-                if(request.getIdStudent() == loggedStudentId){
-                    holder.checkBoxRequest.setChecked(true);
+        if (topic.getIdTopic() != 0) { // if idTopic = 0, we are with static data
+            List<Request> topicRequests = topic.getTopicRequests(mContext);
+            for (Request request : topicRequests) {
+                if (request.getType().equals("Proposition")) {
+                    totalProposalRequest += 1;
+                } else {
+                    if (request.getIdStudent() == loggedStudentId) {
+                        holder.checkBoxRequest.setChecked(true);
+                    }
                 }
             }
         }
-        holder.txtRequestQty.setText(String.valueOf(typeProposalCount));
+        holder.txtRequestQty.setText(String.valueOf(totalProposalRequest));
 
         // add click listener to open ContactActivity
         holder.lytTopicCard.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +106,25 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
                 Intent intent = new Intent (mContext, Contact_Activity.class);
                 intent.putExtra("idTopic", topic.getIdTopic());
                 mContext.startActivity(intent);
+            }
+        });
+
+        // handle adding or delete Request concerning the topic
+        holder.checkBoxRequest.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    // todo: add
+                    if (topic.getIdTopic() == 0) {
+                        topic.addRequestOnThisTopic(mContext, loggedStudentId, "Demande");
+                    }
+                }else{
+                    // todo: delete
+                    if (topic.getIdTopic() == 0){
+
+                    }
+
+                }
             }
         });
 

@@ -9,7 +9,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -20,6 +22,7 @@ public class Topic {
     private String title;
     private int idClass;
     private int idSubject;
+    private String subjectName;
 
     private List<Request> topicRequests;
 
@@ -62,13 +65,26 @@ public class Topic {
         } catch (ExecutionException e) {
             e.printStackTrace();
             Log.d("DEBUG", "executionException");
+            Log.d("DEBUG", e.toString());
         } catch (InterruptedException e) {
             e.printStackTrace();
             Log.d("DEBUG", "InterruptionException");
+            Log.d("DEBUG", e.toString());
         }
 
-        String subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
-                .getAsJsonObject().get("libelle").getAsString();
+        if (jsonResponce != null) {
+            subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
+                    .getAsJsonObject().get("libelle").getAsString();
+        }
+
+        // if server is killed (only for test)
+        if (subjectName == null){
+            switch (idSubject){
+                case 1: subjectName = "Programmation Android"; break;
+                case 2: subjectName = "Programmation Web"; break;
+                case 3: subjectName = "IHM"; break;
+            }
+        }
         return subjectName;
     }
 
@@ -105,5 +121,31 @@ public class Topic {
         Log.d("debug" , String.valueOf(this.idTopic));
         Log.d("debug", topicRequests.toString());
         return topicRequests;
+    }
+
+    public void addRequestOnThisTopic (Context context, int idStudent, String type){
+        JsonObject json = new JsonObject();
+//        json.addProperty("foo", "bar");
+        json.addProperty("sujetId", this.getIdTopic());
+        json.addProperty("eleveId", idStudent);
+        json.addProperty("description", "");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String currentDateandTime = sdf.format(new Date());
+        json.addProperty("dateheure", currentDateandTime);
+        json.addProperty("type", type);
+
+        Log.d("debug", json.toString());
+
+//        Ion.with(context)
+//                .load("http://185.225.210.63:3000/demande/")
+//                .setJsonObjectBody(json)
+//                .asJsonObject()
+//                .setCallback(new FutureCallback<JsonObject>() {
+//                    @Override
+//                    public void onCompleted(Exception e, JsonObject result) {
+//                        // do stuff with the result or error
+//                        Log.d("DEBUG", e.toString());
+//                    }
+//                });
     }
 }

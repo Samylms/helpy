@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ij.personal.helpy.Models.Class;
@@ -50,16 +51,28 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
         studentClass = new Class(1, 2019, "Prism");
         topics = studentClass.getClassTopics(this);
 
-        // handle recyclerView
-        topicRecyclerView = findViewById(R.id.topicRecyclerView);
-        topicRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        topicLayoutManager = new LinearLayoutManager(this);
-        topicRecyclerView.setLayoutManager(topicLayoutManager);
-        // specify an adapter
-        topicAdapter = new TopicAdapter(topics, this);
-        topicRecyclerView.setAdapter(topicAdapter);
+        // if server is killed (only for test)
+        if (topics == null){
+            topics = new ArrayList<>();
+            topics.add(new Topic(0, "Lab 3" , 1, 1));
+            topics.add(new Topic(0, "Lab 2" , 1, 1));
+            topics.add(new Topic(0, "Projet" , 1, 2));
+            topics.add(new Topic(0, "Revision" , 1, 3));
+            topics.add(new Topic(0, "TP" , 1, 2));
+        }
 
+        // Send data to the adapter to display
+        if(topics != null){
+            // handle recyclerView
+            topicRecyclerView = findViewById(R.id.topicRecyclerView);
+            topicRecyclerView.setHasFixedSize(true);
+            // use a linear layout manager
+            topicLayoutManager = new LinearLayoutManager(this);
+            topicRecyclerView.setLayoutManager(topicLayoutManager);
+            // specify an adapter
+            topicAdapter = new TopicAdapter(topics, this);
+            topicRecyclerView.setAdapter(topicAdapter);
+        }
     }
 
     // Pour revenir à l'activité précédente via la flèche de retour
