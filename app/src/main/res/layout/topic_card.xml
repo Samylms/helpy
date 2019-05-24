@@ -60,33 +60,46 @@
                 android:gravity="right|center_vertical"
                 android:orientation="horizontal">
 
-                <FrameLayout
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <ImageView
-                        android:id="@+id/icPersonGreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:scaleX="2.3"
-                        android:scaleY="2.3"
-                        app:srcCompat="@drawable/ic_person" />
+                    <FrameLayout
+                        android:layout_width="50dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/txtRequestQty"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="bottom|end"
-                        android:background="@drawable/round_green"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/small_text_size" />
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/icPersonGreen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:scaleX="2"
+                            android:scaleY="2"
+                            app:srcCompat="@drawable/ic_person" />
+
+                        <TextView
+                            android:id="@+id/txtRequestQty"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/round_green"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/small_text_size" />
+                    </FrameLayout>
+                </android.support.constraint.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -96,13 +109,13 @@
                     android:orientation="vertical">
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/checkBoxRequest"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:buttonTint="@color/red"
-                        android:scaleX="2.3"
-                        android:scaleY="2.3"
+                        android:scaleX="2"
+                        android:scaleY="2"
                         android:text="@null" />
                 </LinearLayout>
 

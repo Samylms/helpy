@@ -20,7 +20,6 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
     private RecyclerView topicRecyclerView;
     private RecyclerView.Adapter topicAdapter;
     private RecyclerView.LayoutManager topicLayoutManager;
-    private String[] myDataTest;
 
     private Class studentClass;
     private List<Topic> topics;
@@ -48,8 +47,8 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // GET ALL DATA
-        studentClass = new Class(5, 2019, "Prism");
-        topics = studentClass.getClassTopics();
+        studentClass = new Class(1, 2019, "Prism");
+        topics = studentClass.getClassTopics(this);
 
         // handle recyclerView
         topicRecyclerView = findViewById(R.id.topicRecyclerView);
@@ -58,9 +57,7 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
         topicLayoutManager = new LinearLayoutManager(this);
         topicRecyclerView.setLayoutManager(topicLayoutManager);
         // specify an adapter
-        myDataTest = new String[] {"riri", "fifi", "loulou"};
-//        topicAdapter = new TopicAdapter(myDataTest);
-        topicAdapter = new TopicAdapter(topics);
+        topicAdapter = new TopicAdapter(topics, this);
         topicRecyclerView.setAdapter(topicAdapter);
 
     }

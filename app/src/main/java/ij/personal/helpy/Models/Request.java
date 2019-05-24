@@ -11,7 +11,7 @@ public class Request {
     private String type;
 
 
-    public Request(String description, String dateTime, String type, int idTopic, int idStudent) {
+    public Request(int idTopic, int idStudent, String description, String dateTime, String type) {
         this.description = description;
         this.dateTime = dateTime;
         this.type = type;
