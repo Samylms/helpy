@@ -1,8 +1,8 @@
 package ij.personal.helpy.Contact_Activity;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +20,9 @@ public class Contact_Activity extends AppCompatActivity {
     private ArrayList<String> mButtonContact = new ArrayList<>();
     private Context mContext;
 
+    // to retrieve the concerned topic
+    private int idTopic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class Contact_Activity extends AppCompatActivity {
         Log.d(Tag,"onCreate: started." );
         initName();
 
+        // to retrieve the concerned topic
+        idTopic = getIntent().getIntExtra("idTopic", 0);
     }
 
     private void initName(){

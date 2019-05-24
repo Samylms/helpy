@@ -1,22 +1,25 @@
 package ij.personal.helpy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import ij.personal.helpy.Contact_Activity.Contact_Activity;
 import ij.personal.helpy.Models.Request;
 import ij.personal.helpy.Models.Topic;
 
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
     private List<Topic> mClassTopics;
-    private Context context;
+    private Context mContext;
     private int loggedStudentId;
 
     // Provide a reference to the views for each data item
@@ -28,6 +31,8 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         public TextView txtTopicSubject;
         public CheckBox checkBoxRequest;
         public TextView txtRequestQty;
+        public LinearLayout lytTopicCard;
+        public FrameLayout lytIconPerson;
 
         // Constructor
         public TopicViewHolder(View v) {
@@ -36,14 +41,16 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             txtTopicSubject = v.findViewById(R.id.txtTopicSubject);
             checkBoxRequest = v.findViewById(R.id.checkBoxRequest);
             txtRequestQty = v.findViewById(R.id.txtRequestQty);
+            lytTopicCard = v.findViewById(R.id.lytTopicCard);
+            lytIconPerson = v.findViewById(R.id.lytIconPerson);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
 //    public TopicAdapter(String[] myDataset) {
-    public TopicAdapter(List<Topic> classTopics, Context context) {
+    public TopicAdapter(List<Topic> classTopics, Context mContext) {
         mClassTopics = classTopics;
-        this.context = context;
+        this.mContext = mContext;
     }
 
     // Create new views (invoked by the layout manager)
@@ -63,10 +70,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.txtTopicTitle.setText(mClassTopics.get(position).getTitle());
-        holder.txtTopicSubject.setText(String.valueOf(mClassTopics.get(position).getTopicSubjectName(context)));
+        holder.txtTopicSubject.setText(String.valueOf(mClassTopics.get(position).getTopicSubjectName(mContext)));
 
-        Topic topic = mClassTopics.get(position);
-        List<Request> topicRequests = topic.getTopicRequests(context);
+        final Topic topic = mClassTopics.get(position);
+        List<Request> topicRequests = topic.getTopicRequests(mContext);
         int typeProposalCount = 0;
         loggedStudentId = 1;
         for (Request request: topicRequests){
@@ -79,6 +86,25 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             }
         }
         holder.txtRequestQty.setText(String.valueOf(typeProposalCount));
+
+        // add click listener to open ContactActivity
+        holder.lytTopicCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (mContext, Contact_Activity.class);
+                intent.putExtra("idTopic", topic.getIdTopic());
+                mContext.startActivity(intent);
+            }
+        });
+        holder.lytIconPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (mContext, Contact_Activity.class);
+                intent.putExtra("idTopic", topic.getIdTopic());
+                mContext.startActivity(intent);
+            }
+        });
+
 
     }
 
