@@ -5,10 +5,25 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.List;
+
+import ij.personal.helpy.Models.Class;
+import ij.personal.helpy.Models.Topic;
+
 public class NeedHelpTopicListActivity extends AppCompatActivity {
+
+    private RecyclerView topicRecyclerView;
+    private RecyclerView.Adapter topicAdapter;
+    private RecyclerView.LayoutManager topicLayoutManager;
+    private String[] myDataTest;
+
+    private Class studentClass;
+    private List<Topic> topics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +46,23 @@ public class NeedHelpTopicListActivity extends AppCompatActivity {
         // Pour la flèche de retour
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        // GET ALL DATA
+        studentClass = new Class(5, 2019, "Prism");
+        topics = studentClass.getClassTopics();
+
+        // handle recyclerView
+        topicRecyclerView = findViewById(R.id.topicRecyclerView);
+        topicRecyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        topicLayoutManager = new LinearLayoutManager(this);
+        topicRecyclerView.setLayoutManager(topicLayoutManager);
+        // specify an adapter
+        myDataTest = new String[] {"riri", "fifi", "loulou"};
+//        topicAdapter = new TopicAdapter(myDataTest);
+        topicAdapter = new TopicAdapter(topics);
+        topicRecyclerView.setAdapter(topicAdapter);
+
     }
 
     // Pour revenir à l'activité précédente via la flèche de retour

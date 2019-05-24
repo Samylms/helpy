@@ -23,7 +23,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     private ArrayList<String> mButtonContact = new ArrayList<>();
     private Context mContext;
 
-    public MyAdapter(Context mContext,ArrayList<String> mTextContact, ArrayList<String> mButtonContact) {
+    public MyAdapter(Context mContext, ArrayList<String> mTextContact, ArrayList<String> mButtonContact) {
         this.mTextContact = mTextContact;
         this.mButtonContact = mButtonContact;
         this.mContext = mContext;
