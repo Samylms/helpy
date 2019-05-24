@@ -51,10 +51,11 @@ public class TopicListNeedHelpActivity extends AppCompatActivity {
 
         // GET ALL DATA
         studentClass = new Class(1, 2019, "Prism");
-        topics = studentClass.getClassTopics(this);
+//        topics = studentClass.getClassTopics(this);
 
         // if server is killed (only for test)
         if (topics == null){
+            topics = new ArrayList<>();
             topics = new ArrayList<>();
             topics.add(new Topic(0, "Lab 3" , 1, 1));
             topics.add(new Topic(0, "Lab 2" , 1, 1));

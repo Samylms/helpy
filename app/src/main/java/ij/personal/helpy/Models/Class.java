@@ -51,30 +51,6 @@ public class Class {
 
     public List<Topic> getClassTopics (Context context){
 
-//        Ion.with(context)
-////                .load("http://api.icndb.com/jokes/random")
-//                .load("http://185.225.210.63:3000/sujet/classe/" + String.valueOf(this.getId()))
-//                .asJsonObject()
-//                .setCallback(new FutureCallback<JsonObject>() {
-//                    @Override
-//                    public void onCompleted(Exception e, JsonObject result) {
-//                        joke = result.get("value").getAsJsonObject().get("joke").getAsString();
-//                        // set the joke on the textView
-//                        TextView txtJoke = findViewById(R.id.txtJoke);
-//                        txtJoke.setText(joke);
-//                        // manage the string
-//                        joke = joke.replace('.', ' ');
-//                        joke = joke.replace(' ', '_');
-//                        jokeURL = "https://memegen.link/iw/" + joke + ".jpg";
-//                        imgJoke = findViewById(R.id.imgJoke);
-//                        /*
-//                        Download the logo from online and set it as
-//                        ImageView image programmatically.
-//                        */
-//                        new DownLoadImageTask(imgJoke).execute(jokeURL);
-//                    }
-//                });
-
         // La library Ion communique avec l'API.
         // ici, la méthode get() oblige l'attente du retour et donc de la création du fichier JSON
         try {
@@ -113,4 +89,28 @@ public class Class {
         return null;
 
     }
+
+    //        Ion.with(context)
+////                .load("http://api.icndb.com/jokes/random")
+//                .load("http://185.225.210.63:3000/sujet/classe/" + String.valueOf(this.getId()))
+//                .asJsonObject()
+//                .setCallback(new FutureCallback<JsonObject>() {
+//                    @Override
+//                    public void onCompleted(Exception e, JsonObject result) {
+//                        joke = result.get("value").getAsJsonObject().get("joke").getAsString();
+//                        // set the joke on the textView
+//                        TextView txtJoke = findViewById(R.id.txtJoke);
+//                        txtJoke.setText(joke);
+//                        // manage the string
+//                        joke = joke.replace('.', ' ');
+//                        joke = joke.replace(' ', '_');
+//                        jokeURL = "https://memegen.link/iw/" + joke + ".jpg";
+//                        imgJoke = findViewById(R.id.imgJoke);
+//                        /*
+//                        Download the logo from online and set it as
+//                        ImageView image programmatically.
+//                        */
+//                        new DownLoadImageTask(imgJoke).execute(jokeURL);
+//                    }
+//                });
 }

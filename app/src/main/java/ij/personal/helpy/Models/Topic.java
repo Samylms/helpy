@@ -9,9 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -55,27 +53,27 @@ public class Topic {
     }
 
     public String getTopicSubjectName (Context context){
-        try {
-            jsonResponce = Ion.with(context)
-                    .load("http://185.225.210.63:3000/matiere/" + String.valueOf(this.getIdSubject()))
-                    .asJsonObject()
-                    .get();
-            Log.d("DEBUG", "jsonResponce: OK");
+//        try {
+//            jsonResponce = Ion.with(context)
+//                    .load("http://185.225.210.63:3000/matiere/" + String.valueOf(this.getIdSubject()))
+//                    .asJsonObject()
+//                    .get();
+//            Log.d("DEBUG", "jsonResponce: OK");
+//
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//            Log.d("DEBUG", "executionException");
+//            Log.d("DEBUG", e.toString());
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            Log.d("DEBUG", "InterruptionException");
+//            Log.d("DEBUG", e.toString());
+//        }
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            Log.d("DEBUG", "executionException");
-            Log.d("DEBUG", e.toString());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.d("DEBUG", "InterruptionException");
-            Log.d("DEBUG", e.toString());
-        }
-
-        if (jsonResponce != null) {
-            subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
-                    .getAsJsonObject().get("libelle").getAsString();
-        }
+//        if (jsonResponce != null) {
+//            subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
+//                    .getAsJsonObject().get("libelle").getAsString();
+//        }
 
         // if server is killed (only for test)
         if (subjectName == null){
@@ -124,17 +122,17 @@ public class Topic {
     }
 
     public void addRequestOnThisTopic (Context context, int idStudent, String type){
-        JsonObject json = new JsonObject();
-//        json.addProperty("foo", "bar");
-        json.addProperty("sujetId", this.getIdTopic());
-        json.addProperty("eleveId", idStudent);
-        json.addProperty("description", "");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String currentDateandTime = sdf.format(new Date());
-        json.addProperty("dateheure", currentDateandTime);
-        json.addProperty("type", type);
-
-        Log.d("debug", json.toString());
+//        JsonObject json = new JsonObject();
+////        json.addProperty("foo", "bar");
+//        json.addProperty("sujetId", this.getIdTopic());
+//        json.addProperty("eleveId", idStudent);
+//        json.addProperty("description", "");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+//        String currentDateandTime = sdf.format(new Date());
+//        json.addProperty("dateheure", currentDateandTime);
+//        json.addProperty("type", type);
+//
+//        Log.d("debug", json.toString());
 
 //        Ion.with(context)
 //                .load("http://185.225.210.63:3000/demande/")
