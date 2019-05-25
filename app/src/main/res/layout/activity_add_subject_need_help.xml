@@ -18,8 +18,8 @@
         android:layout_marginLeft="@dimen/small_margin"
         android:layout_marginRight="@dimen/small_margin" />
 
-    <EditText
-        android:id="@+id/edit_general_subject_need_help"
+    <Spinner
+        android:id="@+id/spinner_general_subject_need_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/general_subject"
