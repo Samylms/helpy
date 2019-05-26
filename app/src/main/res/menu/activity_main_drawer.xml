@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profil"
+            android:checkable="false"
+            android:icon="@drawable/ic_person"
+            android:title="@string/menu_profil"
+            android:visible="true" />
+        <item
+            android:id="@+id/nav_preferences"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_preferences" />
+        <item
+            android:id="@+id/nav_deconnect"
+            android:icon="@android:drawable/ic_delete"
+            android:title="@string/menu_deconnect" />
+        <item
+            android:id="@+id/nav_demo"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_demo" />
+        <item
+            android:id="@+id/nav_propos"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/menu_propos" />
+    </group>
+
+</menu>
