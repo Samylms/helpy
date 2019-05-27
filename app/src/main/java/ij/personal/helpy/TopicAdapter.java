@@ -14,7 +14,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import ij.personal.helpy.Contact_Activity.Contact_Activity;
+import ij.personal.helpy.Contact_Activity.Demande_aide.Demande_Activity;
+import ij.personal.helpy.Contact_Activity.Propose_aide.Propose_Activity;
 import ij.personal.helpy.Models.Request;
 import ij.personal.helpy.Models.Topic;
 
@@ -95,7 +96,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.lytTopicCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (mContext, Contact_Activity.class);
+                Intent intent = new Intent (mContext, Propose_Activity.class);
                 intent.putExtra("idTopic", topic.getIdTopic());
                 mContext.startActivity(intent);
             }
@@ -103,7 +104,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         holder.lytIconPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (mContext, Contact_Activity.class);
+                Intent intent = new Intent (mContext, Demande_Activity.class);
                 intent.putExtra("idTopic", topic.getIdTopic());
                 mContext.startActivity(intent);
             }

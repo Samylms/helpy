@@ -1,4 +1,5 @@
-package ij.personal.helpy.Contact_Activity;
+package ij.personal.helpy.Contact_Activity.Propose_aide;
+
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,16 +17,13 @@ import java.util.ArrayList;
 
 import ij.personal.helpy.R;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
-    //for log
-    private static final String Tag = "MyAdapter";
+public class ProposeAdapter  extends RecyclerView.Adapter<ProposeAdapter.MyViewHolder>{    //for log
+    private static final String Tag = "DemandeAdapter";
     private ArrayList<String> mTextContact = new ArrayList<>();
-    private ArrayList<String> mButtonContact = new ArrayList<>();
     private Context mContext;
 
-    public MyAdapter(Context mContext, ArrayList<String> mTextContact, ArrayList<String> mButtonContact) {
+    public ProposeAdapter(Context mContext,ArrayList<String> mTextContact) {
         this.mTextContact = mTextContact;
-        this.mButtonContact = mButtonContact;
         this.mContext = mContext;
     }
 
@@ -38,7 +36,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         public MyViewHolder(View itemView) {
             super(itemView);
             txtContact = itemView.findViewById(R.id.txtdemande);
-            btnContacter = itemView.findViewById(R.id.btndemmande);
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
         }
@@ -46,23 +43,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
 
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProposeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_listitem, parent, false);
+                .inflate(R.layout.layout_list_propose, parent, false);
 
-        MyViewHolder holder = new MyViewHolder(view);
+        ProposeAdapter.MyViewHolder holder = new ProposeAdapter.MyViewHolder(view);
         return  holder;
 
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        //  holder.txtContact.setText(mTextContact.get(position));
-        // holder.btnContacter.setText(mButtonContact.get(position));
+    public void onBindViewHolder(ProposeAdapter.MyViewHolder holder, final int position) {
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override

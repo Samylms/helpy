@@ -1,8 +1,9 @@
-package ij.personal.helpy.Contact_Activity;
+package ij.personal.helpy.Contact_Activity.Demande_aide;
+
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,27 +12,21 @@ import java.util.ArrayList;
 
 import ij.personal.helpy.R;
 
-public class Contact_Activity extends AppCompatActivity {
+public class Demande_Activity extends AppCompatActivity {
 
 
     //for log
-    private static final String Tag = "MainActivityTest";
+    private static final String Tag = "MainActivity";
     private ArrayList<String> mTextContact = new ArrayList<>();
-    private ArrayList<String> mButtonContact = new ArrayList<>();
     private Context mContext;
-
-    // to retrieve the concerned topic
-    private int idTopic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact);
+        setContentView(R.layout.activity_demande);
         Log.d(Tag,"onCreate: started." );
         initName();
 
-        // to retrieve the concerned topic
-        idTopic = getIntent().getIntExtra("idTopic", 0);
     }
 
     private void initName(){
@@ -44,9 +39,10 @@ public class Contact_Activity extends AppCompatActivity {
     private void  initReclyclerView(){
         Log.d(Tag, "initRecyclerView");
         RecyclerView recyclerView = findViewById(R.id.my_recycler_view);
-        MyAdapter adapter = new MyAdapter(this, mTextContact, mButtonContact);
+        DemandeAdapter adapter = new DemandeAdapter(this, mTextContact);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
+
