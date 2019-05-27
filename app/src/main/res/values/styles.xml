@@ -24,4 +24,9 @@
         <item name="colorAccent">@color/red</item>
     </style>
 
+    <style name="ThemeDialogWithCorners" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@drawable/dialog</item>
+        <!--<item name="android:popupWindowStyle">@drawable/dialog</item>-->
+    </style>
+
 </resources>
