@@ -50,7 +50,7 @@ public class Class {
         this.name = name;
     }
 
-    public List<Topic> getClassTopics (Context context){
+    public List<Topic> getClassTopics(Context context) {
 
         // La library Ion communique avec l'API.
         // ici, la méthode get() oblige l'attente du retour et donc de la création du fichier JSON
@@ -64,7 +64,7 @@ public class Class {
             classTopics = new ArrayList<>();
             JsonArray jsonArrayTopics = jsonResponce.get("sujet").getAsJsonArray();
 
-            for (JsonElement jsonTopic: jsonArrayTopics) {
+            for (JsonElement jsonTopic : jsonArrayTopics) {
 
                 int idTopic = jsonTopic.getAsJsonObject().get("idSujet").getAsInt();
                 String title = jsonTopic.getAsJsonObject().get("titre").getAsString();
@@ -74,7 +74,7 @@ public class Class {
                 classTopics.add(topic);
 
             }
-            Log.d("debug" , String.valueOf(this.id));
+            Log.d("debug", String.valueOf(this.id));
             Log.d("debug", classTopics.toString());
             return classTopics;
 
@@ -115,7 +115,7 @@ public class Class {
 //                    }
 //                });
 
-    public void addStudent(Context context){
+    public void addStudent(Context context) {
         JsonObject json = new JsonObject();
 //        json.addProperty("foo", "bar");
         json.addProperty("classeId", this.getId());
@@ -135,8 +135,12 @@ public class Class {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         // do stuff with the result or error
-//                        Log.d("DEBUG", e.toString());
-                        Log.d("debug", String.valueOf(result.getAsJsonObject().get("code").getAsInt()));
+                        if (e != null) {
+                            Log.d("DEBUG", e.toString());
+                        }
+                        if (result != null) {
+                            Log.d("debug", result.getAsJsonObject().toString());
+                        }
                     }
                 });
         Log.d("debug", "************** student sign In");

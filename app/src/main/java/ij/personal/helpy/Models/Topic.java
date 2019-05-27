@@ -148,10 +148,10 @@ public class Topic {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         // do stuff with the result or error
-//                        if (!e.equals(null)) {
-//                            Log.d("DEBUG", e.toString());
-//                        }
-                        if (!result.equals(null)) {
+                        if (e != null) {
+                            Log.d("DEBUG", e.toString());
+                        }
+                        if (result != null) {
                             Log.d("debug", result.getAsJsonObject().toString());
                         }
                     }

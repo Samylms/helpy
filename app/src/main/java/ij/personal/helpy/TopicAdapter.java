@@ -67,10 +67,8 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 for (Request request : topicRequests) {
                     if (request.getType().equals("Proposition")) {
                         proposalRequestCount += 1;
-                    } else {
-                        if (request.getIdStudent() == loggedStudentId) {
+                    } else if (request.getIdStudent() == loggedStudentId) {
                             vhItem.checkBoxRequest.setChecked(true);
-                        }
                     }
                 }
             }
