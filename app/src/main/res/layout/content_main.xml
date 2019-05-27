@@ -36,7 +36,8 @@
             android:background="@drawable/button_red"
             android:text="J'ai besoin d'aide"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"/>
 
         <Button
             android:id="@+id/btnPropose"
@@ -46,7 +47,8 @@
             android:background="@drawable/button_green"
             android:text="Je propose mon aide"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"/>
 
 
     </LinearLayout>
@@ -61,14 +63,16 @@
 
         <Button
             android:id="@+id/btnGestion"
-            android:layout_width="368dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/btn_transparent"
             android:text="Gestion d'activités"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp"
-            />
+            android:paddingHorizontal="20dp"/>
 
     </LinearLayout>
 </LinearLayout>
