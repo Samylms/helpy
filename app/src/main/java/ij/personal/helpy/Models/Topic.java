@@ -7,9 +7,12 @@ import android.util.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -122,28 +125,37 @@ public class Topic {
     }
 
     public void addRequestOnThisTopic (Context context, int idStudent, String type){
-//        JsonObject json = new JsonObject();
-////        json.addProperty("foo", "bar");
+        JsonObject json = new JsonObject();
+//        json.addProperty("foo", "bar");
 //        json.addProperty("sujetId", this.getIdTopic());
+        json.addProperty("sujetId", 1);
 //        json.addProperty("eleveId", idStudent);
-//        json.addProperty("description", "");
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-//        String currentDateandTime = sdf.format(new Date());
-//        json.addProperty("dateheure", currentDateandTime);
-//        json.addProperty("type", type);
-//
-//        Log.d("debug", json.toString());
+        json.addProperty("eleveId", 1);
+        json.addProperty("description", "hello Coco! Help me pleeeeease!");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String currentDateandTime = sdf.format(new Date());
+        json.addProperty("dateheure", currentDateandTime);
+        json.addProperty("type", type);
+        json.addProperty("flag", 1);
 
-//        Ion.with(context)
-//                .load("http://185.225.210.63:3000/demande/")
-//                .setJsonObjectBody(json)
-//                .asJsonObject()
-//                .setCallback(new FutureCallback<JsonObject>() {
-//                    @Override
-//                    public void onCompleted(Exception e, JsonObject result) {
-//                        // do stuff with the result or error
-//                        Log.d("DEBUG", e.toString());
-//                    }
-//                });
+        Log.d("debug", json.toString());
+
+        Ion.with(context)
+                .load("http://185.225.210.63:3000/demande/")
+                .setJsonObjectBody(json)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+//                        if (!e.equals(null)) {
+//                            Log.d("DEBUG", e.toString());
+//                        }
+                        if (!result.equals(null)) {
+                            Log.d("debug", result.getAsJsonObject().toString());
+                        }
+                    }
+                });
+        Log.d("debug", "************** request adding");
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
@@ -113,4 +114,31 @@ public class Class {
 //                        new DownLoadImageTask(imgJoke).execute(jokeURL);
 //                    }
 //                });
+
+    public void addStudent(Context context){
+        JsonObject json = new JsonObject();
+//        json.addProperty("foo", "bar");
+        json.addProperty("classeId", this.getId());
+        json.addProperty("mail", "jerome.isoard@u-psud.fr");
+        json.addProperty("mdp", "prism2019");
+        json.addProperty("nom", "isoard");
+        json.addProperty("prenom", "jerome");
+        json.addProperty("telephone", 0617534110);
+
+        Log.d("debug", json.toString());
+
+        Ion.with(context)
+                .load("http://185.225.210.63:3000/eleve/inscription")
+                .setJsonObjectBody(json)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+//                        Log.d("DEBUG", e.toString());
+                        Log.d("debug", String.valueOf(result.getAsJsonObject().get("code").getAsInt()));
+                    }
+                });
+        Log.d("debug", "************** student sign In");
+    }
 }
