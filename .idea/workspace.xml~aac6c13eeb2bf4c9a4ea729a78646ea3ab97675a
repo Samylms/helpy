@@ -10,8 +10,12 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
     <list default="true" id="7f67d562-1ab6-475d-9052-6d9a3ce703f2" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_transparent.xml" afterDir="false" />
+=======
+    <list default="true" id="7f67d562-1ab6-475d-9052-6d9a3ce703f2" name="Default Changelist" comment="Modif des couleurs">
+>>>>>>> Stashed changes:.idea/workspace.xml
 =======
     <list default="true" id="7f67d562-1ab6-475d-9052-6d9a3ce703f2" name="Default Changelist" comment="Modif des couleurs">
 >>>>>>> Stashed changes:.idea/workspace.xml
@@ -88,6 +92,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -97,6 +102,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/AddSubjectNeedHelpActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/AddSubjectNeedHelpActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+>>>>>>> Stashed changes:.idea/workspace.xml
             <state relative-caret-position="272">
               <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
             </state>
@@ -108,6 +118,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+>>>>>>> Stashed changes:.idea/workspace.xml
+=======
 >>>>>>> Stashed changes:.idea/workspace.xml
             </state>
           </provider>
@@ -116,21 +129,28 @@
       </file>
       <file pinned="false" current-in-tab="false">
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="146">
               <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
 =======
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
               <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+>>>>>>> Stashed changes:.idea/workspace.xml
+=======
 >>>>>>> Stashed changes:.idea/workspace.xml
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
@@ -207,12 +227,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_subject_need_help.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="58" column="57" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="57" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+>>>>>>> Stashed changes:.idea/workspace.xml
         <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dialog.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
             </state>
           </provider>
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+>>>>>>> Stashed changes:.idea/workspace.xml
+=======
 >>>>>>> Stashed changes:.idea/workspace.xml
         </entry>
       </file>
@@ -238,10 +274,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/NeedHelpTopicListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/AddSubjectNeedHelpActivity.java" />
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/AddSubjectNeedHelpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_subject_need_help.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/TopicListNeedHelpActivity.java" />
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
 =======
 >>>>>>> Stashed changes:.idea/workspace.xml
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/authentication/LoginActivity.java" />
@@ -252,9 +291,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/MainActivity.java" />
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
 =======
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
         <option value="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/TopicListNeedHelpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/edit_text_rectangle.xml" />
@@ -265,6 +307,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_subject_need_help.xml" />
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+>>>>>>> Stashed changes:.idea/workspace.xml
+=======
 >>>>>>> Stashed changes:.idea/workspace.xml
       </list>
     </option>
@@ -280,6 +325,10 @@
     </navigator>
     <panes>
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+=======
+      <pane id="Scope" />
+>>>>>>> Stashed changes:.idea/workspace.xml
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,22 +341,31 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
       <pane id="Scope" />
       <pane id="AndroidView">
 =======
       <pane id="Scope" />
       <pane id="ProjectPane">
 >>>>>>> Stashed changes:.idea/workspace.xml
+=======
+      <pane id="AndroidView">
+>>>>>>> Stashed changes:.idea/workspace.xml
         <subPane>
           <expand>
             <path>
-              <item name="helpy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="helpy" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="helpy" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="helpy" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
 =======
       <pane id="PackagesPane" />
@@ -327,12 +385,18 @@
         </subPane>
       </pane>
 >>>>>>> Stashed changes:.idea/workspace.xml
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
     <property name="device.picker.selection" value="Pixel_XL_API_25_2" />
+=======
+    <property name="device.picker.selection" value="041604d2b1491502" />
+>>>>>>> Stashed changes:.idea/workspace.xml
 =======
     <property name="device.picker.selection" value="041604d2b1491502" />
 >>>>>>> Stashed changes:.idea/workspace.xml
@@ -467,7 +531,10 @@
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
 =======
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18389262" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -535,8 +602,11 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_subject_need_help.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/TopicListNeedHelpActivity.java" />
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
 =======
 >>>>>>> Stashed changes:.idea/workspace.xml
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml">
@@ -596,6 +666,9 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/authentication/LoginActivity.java">
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+>>>>>>> Stashed changes:.idea/workspace.xml
+=======
 >>>>>>> Stashed changes:.idea/workspace.xml
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -624,10 +697,17 @@
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_green.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="6" selection-end-column="8" />
+=======
+    <entry file="file://$USER_HOME$/AppData/Local/Android/android-sdk/sources/android-28/android/view/View.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/MainActivityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
 =======
     <entry file="file://$USER_HOME$/AppData/Local/Android/android-sdk/sources/android-28/android/view/View.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/MainActivityTest.java">
@@ -645,12 +725,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/TopicAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+        <state relative-caret-position="289">
+          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+>>>>>>> Stashed changes:.idea/workspace.xml
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/btn_transparent.xml">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
         <state relative-caret-position="136">
           <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
 =======
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
         <state relative-caret-position="255">
           <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
           <folding>
@@ -675,8 +766,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/TopicListNeedHelpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
 <<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
         <state relative-caret-position="221">
           <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
@@ -695,6 +801,8 @@
             <element signature="e#560#589#0" expanded="true" />
           </folding>
 =======
+=======
+>>>>>>> Stashed changes:.idea/workspace.xml
         <state relative-caret-position="357">
           <caret line="36" column="85" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
         </state>
@@ -704,8 +812,67 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="8" selection-start-column="8" selection-end-column="8" />
+<<<<<<< Updated upstream:.idea/workspace.xml~aac6c13eeb2bf4c9a4ea729a78646ea3ab97675a
+=======
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/round_green.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/dialog.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/edit_text_rectangle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dialog_test.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ij/personal/helpy/Need_Help/AddSubjectNeedHelpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+>>>>>>> Stashed changes:.idea/workspace.xml
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_subject_need_help.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="58" column="57" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="57" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/round_green.xml">
       <provider selected="true" editor-type-id="text-editor" />
