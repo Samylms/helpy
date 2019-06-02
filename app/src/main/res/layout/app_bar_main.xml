@@ -7,17 +7,21 @@
     tools:context=".MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+        android:layout_width="78dp"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:visibility="invisible">
+        android:background="#00362919"
+        android:visibility="visible">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="@null"
+            android:clickable="false"
+            android:touchscreenBlocksFocus="false"
+            app:navigationIcon="@drawable/alert"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextColor="#8AFFFFFF" />
 
     </android.support.design.widget.AppBarLayout>
 

@@ -15,13 +15,16 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
 
     <style name="AppThemeNeedHelp" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryDark">@color/red</item>
         <item name="colorAccent">@color/red</item>
+
     </style>
 
     <style name="ThemeDialogWithCorners" parent="Theme.AppCompat.Light.Dialog">
