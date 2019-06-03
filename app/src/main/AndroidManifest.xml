@@ -16,7 +16,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Need_Help.AddSubjectNeedHelpActivity"
+            android:name=".TopicList.AddTopicActivity"
             android:label="@string/title_add_new_subject"
             android:theme="@style/ThemeDialogWithCorners" />
             <!--android:theme="@style/ThemeDialogWithCorners" /> ou android:theme="@style/Theme.AppCompat.Light.Dialog" />-->
@@ -24,7 +24,7 @@
             android:name=".authentication.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Need_Help.TopicListNeedHelpActivity"
+            android:name=".TopicList.TopicListActivity"
             android:label="@string/title_activity_need_help_topic_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivityTest" />

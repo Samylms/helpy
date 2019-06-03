@@ -3,13 +3,13 @@
     <string name="cancel">Annuler</string>
     <string name="validate">Valider</string>
 
-    <!--TopicListNeedHelpActivity-->
+    <!--TopicListActivity-->
     <string name="title_activity_need_help_topic_list">NeedHelpTopicListActivity</string>
     <string name="title_need_help">J\'ai besoin d\'aide</string>
     <string name="title_can_help">Je peux aider</string>
     <string name="title_which_subject">Pour quel sujet ?</string>
 
-    <!--AddSubjectNeedHelpActivity-->
+    <!--AddTopicActivity-->
     <string name="title_add_new_subject">Ajouter un nouveau sujet</string>
     <string name="subject_name">Nom du sujet</string>
     <string name="general_subject">Matière</string>
@@ -29,5 +29,12 @@
     <string name="menu_share">Share</string>
     <string name="menu_propos">A Propos</string>
     <string name="menu_send">Send</string>
+
+    <!--LoginActivity-->
+    <string name="toast_login_error">Une erreur est survenue lors de l\'authentification, veuillez réessayer ultérieurement.</string>
+    <string name="toast_login_invalid">Identifiants invalides</string>
+    <string name="toast_signin_error">Une erreur est survenue lors de l\'inscription, veuillez réessayer ultérieurement.</string>
+    <string name="toast_signin_invalid_class">La promotion saisie est invalide</string>
+    <string name="toast_signin_invalid_mail">Un compte existe déjà pour cette adresse mail.</string>
 
 </resources>

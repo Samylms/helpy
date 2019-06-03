@@ -28,7 +28,10 @@
     </style>
 
     <style name="ThemeDialogWithCorners" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:windowBackground">@drawable/dialog</item>
+        <item name="android:windowBackground">@drawable/dialog_topic_background</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/darkGrey</item>
+        <item name="windowNoTitle">true</item>
         <!--<item name="android:popupWindowStyle">@drawable/dialog</item>-->
     </style>
 

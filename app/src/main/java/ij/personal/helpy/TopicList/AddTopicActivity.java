@@ -1,4 +1,4 @@
-package ij.personal.helpy.Need_Help;
+package ij.personal.helpy.TopicList;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import ij.personal.helpy.R;
 
-public class AddSubjectNeedHelpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddTopicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText editSubjectName;
     private Spinner spinnerGeneralSubject;
@@ -28,7 +28,7 @@ public class AddSubjectNeedHelpActivity extends AppCompatActivity implements Ada
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_subject_need_help);
+        setContentView(R.layout.activity_add_topic);
 
         editSubjectName = findViewById(R.id.edit_subject_name_need_help);
         spinnerGeneralSubject = findViewById(R.id.spinner_general_subject_need_help);

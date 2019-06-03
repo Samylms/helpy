@@ -1,12 +1,5 @@
 package ij.personal.helpy.Models;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.google.gson.JsonObject;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-
 // ELEVES
 public class Student {
 
@@ -69,6 +62,10 @@ public class Student {
         this.phone = phone;
     }
 
+    public void setIdClass(int idClass) {
+        this.idClass = idClass;
+    }
+
     public int getIdClass() {
         return idClass;
     }
@@ -77,32 +74,5 @@ public class Student {
         //todo: api call
 
         return null;
-    }
-
-    public void logStudent(Context context){
-        JsonObject json = new JsonObject();
-//        json.addProperty("foo", "bar");
-        json.addProperty("mail", "jerome.isoard@u-psud.fr");
-        json.addProperty("mdp", "prism2019");
-
-        Log.d("debug", json.toString());
-
-        Ion.with(context)
-                .load("http://185.225.210.63:3000/eleve/login")
-                .setJsonObjectBody(json)
-                .asJsonObject()
-                .setCallback(new FutureCallback<JsonObject>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonObject result) {
-                        // do stuff with the result or error
-                        if (!e.equals(null)) {
-                            Log.d("DEBUG", e.toString());
-                        }
-                        if (!result.equals(null)) {
-                            Log.d("debug", result.getAsJsonObject().toString());
-                        }
-                    }
-                });
-        Log.d("debug", "************** student Log In");
     }
 }

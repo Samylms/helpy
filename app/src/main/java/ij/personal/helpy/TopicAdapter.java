@@ -25,7 +25,6 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_ITEM = 1;
     private List<Topic> mClassTopics;
     private Context mContext;
-    private int loggedStudentId;
     private int proposalRequestCount;
 
     public TopicAdapter(List<Topic> classTopics, Context mContext) {
@@ -61,13 +60,17 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             final Topic topic = getItem(position);
             proposalRequestCount = 0;
-            loggedStudentId = 1;
-            if (topic.getIdTopic() != 0) { // if idTopic = 0, we are with static data
+
+            // get request only if server is OK
+            if (Prefs.isServerOK(mContext)){
                 List<Request> topicRequests = topic.getTopicRequests(mContext);
+                // count the number of proposition on this topic
                 for (Request request : topicRequests) {
                     if (request.getType().equals("Proposition")) {
                         proposalRequestCount += 1;
-                    } else if (request.getIdStudent() == loggedStudentId) {
+
+                        // check the box if student has a request on this topic
+                    } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
                             vhItem.checkBoxRequest.setChecked(true);
                     }
                 }
@@ -98,12 +101,12 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked){
                         // todo: add
-                        if (topic.getIdTopic() == 0) {
-                            topic.addRequestOnThisTopic(mContext, loggedStudentId, "Demande");
+                        if (Prefs.isServerOK(mContext)) {
+                            topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
                     }else{
                         // todo: delete
-                        if (topic.getIdTopic() == 0){
+                        if (Prefs.isServerOK(mContext)){
 
                         }
                     }

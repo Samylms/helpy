@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import ij.personal.helpy.Prefs;
+
 // SUJETS
 public class Topic {
 
@@ -55,41 +57,49 @@ public class Topic {
         return idSubject;
     }
 
-    public String getTopicSubjectName (Context context){
-//        try {
-//            jsonResponce = Ion.with(context)
-//                    .load("http://185.225.210.63:3000/matiere/" + String.valueOf(this.getIdSubject()))
-//                    .asJsonObject()
-//                    .get();
-//            Log.d("DEBUG", "jsonResponce: OK");
-//
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//            Log.d("DEBUG", "executionException");
-//            Log.d("DEBUG", e.toString());
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//            Log.d("DEBUG", "InterruptionException");
-//            Log.d("DEBUG", e.toString());
-//        }
+    // API CALL
+    public String getTopicSubjectName(Context context) {
+        if (Prefs.isServerOK(context)) {
+            try {
+                jsonResponce = Ion.with(context)
+                        .load("http://185.225.210.63:3000/matiere/" + String.valueOf(this.getIdSubject()))
+                        .asJsonObject()
+                        .get();
+                Log.d("DEBUG", "jsonResponce: OK");
 
-//        if (jsonResponce != null) {
-//            subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
-//                    .getAsJsonObject().get("libelle").getAsString();
-//        }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+                Log.d("DEBUG", "executionException");
+                Log.d("DEBUG", e.toString());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Log.d("DEBUG", "InterruptionException");
+                Log.d("DEBUG", e.toString());
+            }
 
-        // if server is killed (only for test)
-        if (subjectName == null){
-            switch (idSubject){
-                case 1: subjectName = "Programmation Android"; break;
-                case 2: subjectName = "Programmation Web"; break;
-                case 3: subjectName = "IHM"; break;
+            if (jsonResponce != null) {
+                subjectName = jsonResponce.get("matiere").getAsJsonArray().get(0)
+                        .getAsJsonObject().get("libelle").getAsString();
+            }
+        } else {
+            // if server is killed (only for test)
+            switch (idSubject) {
+                case 1:
+                    subjectName = "Programmation Android";
+                    break;
+                case 2:
+                    subjectName = "Programmation Web";
+                    break;
+                case 3:
+                    subjectName = "IHM";
+                    break;
             }
         }
         return subjectName;
     }
 
-    public List<Request> getTopicRequests(Context context){
+    // API CALL
+    public List<Request> getTopicRequests(Context context) {
         try {
             jsonResponce = Ion.with(context)
                     .load("http://185.225.210.63:3000/demande/sujet/" + String.valueOf(this.getIdTopic()))
@@ -108,7 +118,7 @@ public class Topic {
         topicRequests = new ArrayList<>();
         JsonArray jsonArrayRequests = jsonResponce.get("demande").getAsJsonArray();
 
-        for (JsonElement jsonRequest: jsonArrayRequests) {
+        for (JsonElement jsonRequest : jsonArrayRequests) {
 
             int idStudent = jsonRequest.getAsJsonObject().get("eleveId").getAsInt();
             String description = jsonRequest.getAsJsonObject().get("description").getAsString();
@@ -119,18 +129,16 @@ public class Topic {
             topicRequests.add(request);
 
         }
-        Log.d("debug" , String.valueOf(this.idTopic));
+        Log.d("debug", String.valueOf(this.idTopic));
         Log.d("debug", topicRequests.toString());
         return topicRequests;
     }
 
-    public void addRequestOnThisTopic (Context context, int idStudent, String type){
+    // API CALL
+    public void addRequestOnThisTopic(Context context, int idStudent, String type) {
         JsonObject json = new JsonObject();
-//        json.addProperty("foo", "bar");
-//        json.addProperty("sujetId", this.getIdTopic());
-        json.addProperty("sujetId", 1);
-//        json.addProperty("eleveId", idStudent);
-        json.addProperty("eleveId", 1);
+        json.addProperty("sujetId", this.getIdTopic());
+        json.addProperty("eleveId", idStudent);
         json.addProperty("description", "hello Coco! Help me pleeeeease!");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String currentDateandTime = sdf.format(new Date());
