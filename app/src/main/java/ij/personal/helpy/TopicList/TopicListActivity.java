@@ -31,6 +31,8 @@ public class TopicListActivity extends AppCompatActivity {
     private RecyclerView.Adapter topicAdapter;
     private RecyclerView.LayoutManager topicLayoutManager;
     private Context mContext;
+    private String type;
+    public static boolean proposition;
 
     private List<Topic> topics;
 
@@ -38,11 +40,25 @@ public class TopicListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // to know if its an need or a can
+        type = getIntent().getStringExtra("type");
+        if (type.equals("proposition")){
+            proposition = true;
+        }else{
+            proposition = false;
+        }
+
         mContext = this;
 
         setContentView(R.layout.activity_topic_list);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(proposition) {
+            toolbar.setBackgroundColor(getColor(R.color.green));
+            toolbar.setTitle(getString(R.string.title_can_help));
+        }
 
         FloatingActionButton fabAddSubject = findViewById(R.id.fab_add_subject);
         fabAddSubject.setOnClickListener(new View.OnClickListener() {
@@ -63,11 +79,16 @@ public class TopicListActivity extends AppCompatActivity {
         } else {
             // server is killed (only for test)
             topics = new ArrayList<>();
-            topics.add(new Topic(0, "Lab 3", 1, 1));
-            topics.add(new Topic(0, "Lab 2", 1, 1));
-            topics.add(new Topic(0, "Projet", 1, 2));
-            topics.add(new Topic(0, "Revision", 1, 3));
-            topics.add(new Topic(0, "TP", 1, 2));
+            if (proposition){
+                topics.add(new Topic(0, "Lab 2", 1, 1));
+                topics.add(new Topic(0, "TP", 1, 2));
+            }else {
+                topics.add(new Topic(0, "Lab 3", 1, 1));
+                topics.add(new Topic(0, "Lab 2", 1, 1));
+                topics.add(new Topic(0, "Projet", 1, 2));
+                topics.add(new Topic(0, "Revision", 1, 3));
+                topics.add(new Topic(0, "TP", 1, 2));
+            }
         }
 
         // Send data to the adapter to display

@@ -18,9 +18,9 @@ import ij.personal.helpy.TopicList.TopicListActivity;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-        private Button btnBesoin;
-        private Button btnPropose;
-        private Button btnGestion;
+    private Button btnBesoin;
+    private Button btnPropose;
+    private Button btnGestion;
 
 
     @Override
@@ -31,23 +31,27 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btnBesoin= findViewById(R.id.btnBesoin);
+        btnBesoin = findViewById(R.id.btnBesoin);
         btnBesoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TopicListActivity.class));
+                Intent intent = new Intent(MainActivity.this, TopicListActivity.class);
+                intent.putExtra("type", "demande");
+                startActivity(intent);
             }
         });
 
-        btnPropose= findViewById(R.id.btnPropose);
+        btnPropose = findViewById(R.id.btnPropose);
         btnPropose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivityTest.class));
+                Intent intent = new Intent(MainActivity.this, TopicListActivity.class);
+                intent.putExtra("type", "proposition");
+                startActivity(intent);
             }
         });
 
-        btnGestion= findViewById(R.id.btnGestion);
+        btnGestion = findViewById(R.id.btnGestion);
         btnGestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_demo) {
 
-        }else if (id == R.id.nav_propos) {
+        } else if (id == R.id.nav_propos) {
 
         }
 

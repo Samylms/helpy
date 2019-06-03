@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import ij.personal.helpy.Contact_Activity.Demande_aide.Demande_Activity;
 import ij.personal.helpy.Contact_Activity.Propose_aide.Propose_Activity;
 import ij.personal.helpy.Models.Request;
 import ij.personal.helpy.Models.Topic;
+import ij.personal.helpy.TopicList.TopicListActivity;
 
 
 public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -49,7 +51,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof VHItem) {
             //cast holder to VHItem and set data
             VHItem vhItem = (VHItem) holder;
@@ -66,37 +68,73 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 List<Request> topicRequests = topic.getTopicRequests(mContext);
                 // count the number of proposition on this topic
                 for (Request request : topicRequests) {
-                    if (request.getType().equals("Proposition")) {
-                        proposalRequestCount += 1;
+                    // test selon intent
+                    if (!TopicListActivity.proposition) {
+                        if (request.getType().equals("Proposition")) {
+                            proposalRequestCount += 1;
 
-                        // check the box if student has a request on this topic
-                    } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
-                            vhItem.checkBoxRequest.setChecked(true);
+                            // check the box if student has a request on this topic
+                        } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
+                            vhItem.checkBoxRequestRed.setChecked(true);
+                        }
+                    }else{
+                        if (request.getType().equals("demande")) {
+                            proposalRequestCount += 1;
+
+                            // check the box if student has a request on this topic
+                        } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
+                            vhItem.checkBoxRequestRed.setChecked(true);
+                        }
                     }
                 }
+            }else{
+                vhItem.txtRequestQtyGreen.setText("3");
+                vhItem.txtRequestQtyRed.setText("3");
             }
-            vhItem.txtRequestQty.setText(String.valueOf(proposalRequestCount));
+            vhItem.txtRequestQtyGreen.setText(String.valueOf(proposalRequestCount));
 
             // add click listener to open ContactActivity
             vhItem.lytTopicCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent (mContext, Propose_Activity.class);
-                    intent.putExtra("idTopic", topic.getIdTopic());
-                    mContext.startActivity(intent);
-                }
-            });
-            vhItem.lytIconPerson.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent (mContext, Demande_Activity.class);
-                    intent.putExtra("idTopic", topic.getIdTopic());
-                    mContext.startActivity(intent);
+                    if(!TopicListActivity.proposition) {
+                        Intent intent = new Intent(mContext, Propose_Activity.class);
+                        intent.putExtra("idTopic", topic.getIdTopic());
+                        mContext.startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(mContext, Demande_Activity.class);
+                        intent.putExtra("idTopic", topic.getIdTopic());
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
+            vhItem.lytIconPerson.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!TopicListActivity.proposition) {
+                        Intent intent = new Intent(mContext, Propose_Activity.class);
+                        intent.putExtra("idTopic", topic.getIdTopic());
+                        mContext.startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(mContext, Demande_Activity.class);
+                        intent.putExtra("idTopic", topic.getIdTopic());
+                        mContext.startActivity(intent);
+                    }
+                }
+            });
+
+            if(TopicListActivity.proposition){
+                vhItem.icPerson.setImageResource(R.drawable.ic_person_red);
+                vhItem.checkBoxRequestRed.setVisibility(View.GONE);
+                vhItem.checkBoxRequestGreen.setVisibility(View.VISIBLE);
+//                vhItem.txtRequestQtyGreen.setBackgroundResource(R.drawable.button_red);
+                vhItem.txtRequestQtyGreen.setVisibility(View.GONE);
+                vhItem.txtRequestQtyRed.setVisibility(View.VISIBLE);
+            }
+
             // handle adding or delete Request concerning the topic
-            vhItem.checkBoxRequest.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            vhItem.checkBoxRequestRed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked){
@@ -104,11 +142,35 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         if (Prefs.isServerOK(mContext)) {
                             topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
+                        //Toast
+//                        Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                     }else{
                         // todo: delete
                         if (Prefs.isServerOK(mContext)){
 
                         }
+                        //Toast
+//                        Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            vhItem.checkBoxRequestGreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        // todo: add
+                        if (Prefs.isServerOK(mContext)) {
+                            topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
+                        }
+                        //Toast
+//                        Toast.makeText(mContext,"Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                    }else{
+                        // todo: delete
+                        if (Prefs.isServerOK(mContext)){
+
+                        }
+                        //Toast
+//                        Toast.makeText(mContext,"Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -144,19 +206,25 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         // each data item
         public TextView txtTopicTitle;
         public TextView txtTopicSubject;
-        public CheckBox checkBoxRequest;
-        public TextView txtRequestQty;
+        public CheckBox checkBoxRequestRed;
+        public CheckBox checkBoxRequestGreen;
+        public TextView txtRequestQtyGreen;
+        public TextView txtRequestQtyRed;
         public LinearLayout lytTopicCard;
         public FrameLayout lytIconPerson;
+        public ImageView icPerson;
 
         public VHItem(View itemView) {
             super(itemView);
             txtTopicTitle = itemView.findViewById(R.id.txtTopicTitle);
             txtTopicSubject = itemView.findViewById(R.id.txtTopicSubject);
-            checkBoxRequest = itemView.findViewById(R.id.checkBoxRequest);
-            txtRequestQty = itemView.findViewById(R.id.txtRequestQty);
+            checkBoxRequestRed = itemView.findViewById(R.id.checkBoxRequest);
+            checkBoxRequestGreen = itemView.findViewById(R.id.checkBoxRequestGreen);
+            txtRequestQtyGreen = itemView.findViewById(R.id.txtRequestQtyGreen);
+            txtRequestQtyRed = itemView.findViewById(R.id.txtRequestQtyRed);
             lytTopicCard = itemView.findViewById(R.id.lytTopicCard);
             lytIconPerson = itemView.findViewById(R.id.lytIconPerson);
+            icPerson = itemView.findViewById(R.id.icPersonGreen);
         }
     }
 
