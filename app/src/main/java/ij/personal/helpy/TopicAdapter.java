@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -87,11 +88,11 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         }
                     }
                 }
+                vhItem.txtRequestQtyGreen.setText(String.valueOf(proposalRequestCount));
             }else{
                 vhItem.txtRequestQtyGreen.setText("3");
                 vhItem.txtRequestQtyRed.setText("3");
             }
-            vhItem.txtRequestQtyGreen.setText(String.valueOf(proposalRequestCount));
 
             // add click listener to open ContactActivity
             vhItem.lytTopicCard.setOnClickListener(new View.OnClickListener() {
@@ -143,14 +144,14 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
                         //Toast
-//                        Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                     }else{
                         // todo: delete
                         if (Prefs.isServerOK(mContext)){
 
                         }
                         //Toast
-//                        Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -163,14 +164,14 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
                         //Toast
-//                        Toast.makeText(mContext,"Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext,"Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                     }else{
                         // todo: delete
                         if (Prefs.isServerOK(mContext)){
 
                         }
                         //Toast
-//                        Toast.makeText(mContext,"Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext,"Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
