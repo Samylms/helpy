@@ -39,7 +39,7 @@ public class AddTopicActivity extends AppCompatActivity implements AdapterView.O
 
         if(TopicListActivity.proposition){
             txtInfoDemand.setText(getText(R.string.text_inscription_can_helper));
-            btnValidate.setBackgroundColor(getColor(R.color.green));
+            btnValidate.setBackground(getDrawable(R.drawable.button_green));
             txtCancel.setTextColor(getColor(R.color.green));
         }
 
