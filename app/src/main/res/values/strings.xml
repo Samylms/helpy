@@ -13,7 +13,8 @@
     <string name="title_add_new_subject">Ajouter un nouveau sujet</string>
     <string name="subject_name">Nom du sujet</string>
     <string name="general_subject">Matière</string>
-    <string name="text_inscription_need_helper">Vous serez automatiquement inscrit comme <b><font color="#FF0000">demandeur</font></b> d\'aide pour ce sujet.</string>
+    <string name="text_inscription_need_helper">Vous serez automatiquement inscrit comme <b><font color="#FF3838">demandeur</font></b> d\'aide pour ce sujet.</string>
+    <string name="text_inscription_can_helper">Vous serez automatiquement inscrit comme <b><font color="#38D138">proposeur</font></b> d\'aide pour ce sujet.</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

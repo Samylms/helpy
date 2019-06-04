@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ij.personal.helpy.MainActivity;
 import ij.personal.helpy.R;
 
 public class AddTopicActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -20,7 +21,7 @@ public class AddTopicActivity extends AppCompatActivity implements AdapterView.O
     private EditText editSubjectName;
     private Spinner spinnerGeneralSubject;
     private Button btnValidate;
-    private TextView txtCancel;
+    private TextView txtInfoDemand, txtCancel;
 
     private List<String> listGeneralSubject;
 
@@ -30,10 +31,17 @@ public class AddTopicActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_topic);
 
-        editSubjectName = findViewById(R.id.edit_subject_name_need_help);
-        spinnerGeneralSubject = findViewById(R.id.spinner_general_subject_need_help);
-        btnValidate = findViewById(R.id.btn_validate_add_subject_need_help);
-        txtCancel = findViewById(R.id.btn_cancel_add_subject_need_help);
+        editSubjectName = findViewById(R.id.edit_subject_name);
+        spinnerGeneralSubject = findViewById(R.id.spinner_general_subject);
+        txtInfoDemand = findViewById(R.id.txt_info_demand);
+        btnValidate = findViewById(R.id.btn_validate_add_subject);
+        txtCancel = findViewById(R.id.btn_cancel_add_subject);
+
+        if(TopicListActivity.proposition){
+            txtInfoDemand.setText(getText(R.string.text_inscription_can_helper));
+            btnValidate.setBackgroundColor(getColor(R.color.green));
+            txtCancel.setTextColor(getColor(R.color.green));
+        }
 
         listGeneralSubject = new ArrayList<>();
 

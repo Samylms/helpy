@@ -23,7 +23,7 @@
         android:textSize="@dimen/text_size" />
 
     <EditText
-        android:id="@+id/edit_subject_name_need_help"
+        android:id="@+id/edit_subject_name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/medium_large_margin"
@@ -42,7 +42,7 @@
         android:orientation="vertical">
 
         <Spinner
-            android:id="@+id/spinner_general_subject_need_help"
+            android:id="@+id/spinner_general_subject"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -56,6 +56,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txt_info_demand"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/medium_large_margin"
@@ -66,7 +67,7 @@
         android:textSize="@dimen/small_text_size" />
 
     <Button
-        android:id="@+id/btn_validate_add_subject_need_help"
+        android:id="@+id/btn_validate_add_subject"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -81,7 +82,7 @@
         android:textSize="@dimen/small_text_size" />
 
     <TextView
-        android:id="@+id/btn_cancel_add_subject_need_help"
+        android:id="@+id/btn_cancel_add_subject"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
