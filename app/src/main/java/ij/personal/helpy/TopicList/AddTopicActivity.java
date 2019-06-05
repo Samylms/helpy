@@ -48,6 +48,7 @@ public class AddTopicActivity extends AppCompatActivity implements AdapterView.O
         //On test si on reçoit bien les bonnes data, si non, on met des matières par défaut
         if(!listGeneralSubject.isEmpty()){
             // on rempli la liste du spinner dynamiquement
+            // todo: API CALL
 
         }else {
             // Valeurs par défaut
@@ -64,7 +65,7 @@ public class AddTopicActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View v) {
                 // Ajouter le sujet dans la base de données puis afficher le contenu modifié
-
+                //todo: add topic API CALL
             }
         });
 

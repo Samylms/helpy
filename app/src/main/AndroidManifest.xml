@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Contact_Activity.ContactActivity"
+            android:parentActivityName=".TopicList.TopicListActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -18,8 +20,7 @@
         <activity
             android:name=".TopicList.AddTopicActivity"
             android:label="@string/title_add_new_subject"
-            android:theme="@style/ThemeDialogWithCorners" />
-            <!--android:theme="@style/ThemeDialogWithCorners" /> ou android:theme="@style/Theme.AppCompat.Light.Dialog" />-->
+            android:theme="@style/ThemeDialogWithCorners" /> <!-- android:theme="@style/ThemeDialogWithCorners" /> ou android:theme="@style/Theme.AppCompat.Light.Dialog" /> -->
         <activity
             android:name=".authentication.SignInActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -27,7 +28,6 @@
             android:name=".TopicList.TopicListActivity"
             android:label="@string/title_activity_need_help_topic_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivityTest" />
         <activity
             android:name=".authentication.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,8 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Contact_Activity.Demande_aide.Demande_Activity" />
-        <activity android:name=".Contact_Activity.Propose_aide.Propose_Activity"></activity>
+        <activity
+            android:name=".Contact_Activity.Demande_aide.Demande_Activity"
+            android:parentActivityName=".TopicList.TopicListActivity" />
+        <activity
+            android:name=".Contact_Activity.Propose_aide.Propose_Activity"
+            android:parentActivityName=".TopicList.TopicListActivity" />
     </application>
 
 </manifest>

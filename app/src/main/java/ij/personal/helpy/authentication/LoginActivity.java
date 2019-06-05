@@ -142,6 +142,11 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("studentLastName", user.getLastName());
             editor.putString("studentFirstName", user.getFirstName());
             editor.putInt("studentPhone", user.getPhone());
+            editor.putInt("studentPrefPhone", user.getPrefPhone());
+            editor.putInt("studentPrefSms", user.getPrefSms());
+            editor.putInt("studentPrefMail", user.getPrefMail());
+            editor.putInt("studentPrefAlertP", user.getPrefAlertP());
+            editor.putInt("studentPrefAlertG", user.getPrefAlertG());
         }
 
         // get className from API
@@ -167,10 +172,17 @@ public class LoginActivity extends AppCompatActivity {
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
 
-            Student student = new Student(idStudent, inputMail, inputPwd, "", "", 0, 0);
+            Student student = new Student(idStudent, inputMail, inputPwd, "", "", 0,
+                    0, 0,0,0,0,0);
             student.setLastName(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("nom").getAsString());
             student.setFirstName(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prenom").getAsString());
             student.setPhone(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("telephone").getAsInt());
+            student.setPrefPhone(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefAppel").getAsInt());
+            student.setPrefSms(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMessage").getAsInt());
+            student.setPrefMail(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMail").getAsInt());
+            student.setPrefAlertP(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifPersonnelles").getAsInt());
+            student.setPrefAlertG(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifGlobales").getAsInt());
+            student.setIdClass(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("ClasseIdClasse").getAsInt());
 
 
             Log.d("debug", student.toString());

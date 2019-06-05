@@ -32,8 +32,24 @@ public class Prefs {
         return context.getSharedPreferences("UserInfo", 0).getString("studentPwd", "");
     }
 
-    public static int getStudentPhone(Context context){
-        return context.getSharedPreferences("UserInfo", 0).getInt("studentPhone", 0);
+    public static int getStudentPrefPhone(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefPhone", 0);
+    }
+
+    public static int getStudentPrefSms(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefSms", 0);
+    }
+
+    public static int getStudentPrefMail(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefMail", 0);
+    }
+
+    public static int getStudentPrefAlertP(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefAlertP", 0);
+    }
+
+    public static int getStudentPrefAlertG(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefAlertG", 0);
     }
 
     public static boolean isStudentConnected(Context context){

@@ -23,7 +23,6 @@ import java.util.concurrent.ExecutionException;
 import ij.personal.helpy.Models.Topic;
 import ij.personal.helpy.Prefs;
 import ij.personal.helpy.R;
-import ij.personal.helpy.TopicAdapter;
 
 public class TopicListActivity extends AppCompatActivity {
 

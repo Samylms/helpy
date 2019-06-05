@@ -1,4 +1,4 @@
-package ij.personal.helpy;
+package ij.personal.helpy.TopicList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,11 +16,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import ij.personal.helpy.Contact_Activity.Demande_aide.Demande_Activity;
-import ij.personal.helpy.Contact_Activity.Propose_aide.Propose_Activity;
+import ij.personal.helpy.Contact_Activity.ContactActivity;
+
 import ij.personal.helpy.Models.Request;
 import ij.personal.helpy.Models.Topic;
-import ij.personal.helpy.TopicList.TopicListActivity;
+import ij.personal.helpy.Prefs;
+import ij.personal.helpy.R;
 
 
 public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -65,7 +66,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             proposalRequestCount = 0;
 
             // get request only if server is OK
-            if (Prefs.isServerOK(mContext)){
+            if (Prefs.isServerOK(mContext)) {
                 List<Request> topicRequests = topic.getTopicRequests(mContext);
                 // count the number of proposition on this topic
                 for (Request request : topicRequests) {
@@ -78,7 +79,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
                             vhItem.checkBoxRequestRed.setChecked(true);
                         }
-                    }else{
+                    } else {
                         if (request.getType().equals("demande")) {
                             proposalRequestCount += 1;
 
@@ -89,43 +90,27 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
                 }
                 vhItem.txtRequestQtyGreen.setText(String.valueOf(proposalRequestCount));
-            }else{
+            } else {
                 vhItem.txtRequestQtyGreen.setText("3");
-                vhItem.txtRequestQtyRed.setText("3");
+                vhItem.txtRequestQtyRed.setText("4");
             }
-
-            // add click listener to open ContactActivity
-            vhItem.lytTopicCard.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(!TopicListActivity.proposition) {
-                        Intent intent = new Intent(mContext, Propose_Activity.class);
-                        intent.putExtra("idTopic", topic.getIdTopic());
-                        mContext.startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(mContext, Demande_Activity.class);
-                        intent.putExtra("idTopic", topic.getIdTopic());
-                        mContext.startActivity(intent);
-                    }
-                }
-            });
 
             vhItem.lytIconPerson.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!TopicListActivity.proposition) {
-                        Intent intent = new Intent(mContext, Propose_Activity.class);
-                        intent.putExtra("idTopic", topic.getIdTopic());
-                        mContext.startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(mContext, Demande_Activity.class);
-                        intent.putExtra("idTopic", topic.getIdTopic());
-                        mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, ContactActivity.class);
+                    intent.putExtra("idTopic", topic.getIdTopic());
+                    intent.putExtra("topicTitle", topic.getTitle());
+                    if (TopicListActivity.proposition) {
+                        intent.putExtra("type", "proposition");
+                    } else {
+                        intent.putExtra("type", "demande");
                     }
+                    mContext.startActivity(intent);
                 }
             });
 
-            if(TopicListActivity.proposition){
+            if (TopicListActivity.proposition) {
                 vhItem.icPerson.setImageResource(R.drawable.ic_person_red);
                 vhItem.checkBoxRequestRed.setVisibility(View.GONE);
                 vhItem.checkBoxRequestGreen.setVisibility(View.VISIBLE);
@@ -138,16 +123,16 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vhItem.checkBoxRequestRed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked){
+                    if (isChecked) {
                         // todo: add
                         if (Prefs.isServerOK(mContext)) {
                             topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
                         //Toast
                         Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else {
                         // todo: delete
-                        if (Prefs.isServerOK(mContext)){
+                        if (Prefs.isServerOK(mContext)) {
 
                         }
                         //Toast
@@ -158,20 +143,20 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vhItem.checkBoxRequestGreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked){
+                    if (isChecked) {
                         // todo: add
                         if (Prefs.isServerOK(mContext)) {
                             topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
                         }
                         //Toast
-                        Toast.makeText(mContext,"Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
-                    }else{
+                        Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                    } else {
                         // todo: delete
-                        if (Prefs.isServerOK(mContext)){
+                        if (Prefs.isServerOK(mContext)) {
 
                         }
                         //Toast
-                        Toast.makeText(mContext,"Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });

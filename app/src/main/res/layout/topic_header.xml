@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/txtHeaderTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="35dp"
