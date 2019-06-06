@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +32,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtInputMail;
     private EditText txtInputPwd;
     private Context mContext;
+    public static LoginActivity loginActivity;
     String inputMail;
     String inputPwd;
     public SharedPreferences settings;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +44,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mContext = this;
+        loginActivity = this; //to be able to finish this activity from SignInActivity
         settings = getSharedPreferences("UserInfo", 0);
+        editor = settings.edit();
 
         // ----------------------------------------
         // ------------ SERVER STATE --------------
         // ----------------------------------------
-        //todo: add switch button server ON OFF
-        SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("isServerOK", false);
-        editor.apply();
+        editor.commit();
         Log.d("debug", "isServerOK = "  + String.valueOf(Prefs.isServerOK(mContext)));
         // ----------------------------------------
         // ----------------------------------------
@@ -83,8 +87,14 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "Veuillez saisir une adresse mail et un mot de passe.", Toast.LENGTH_SHORT).show();
                     } else {
                         logStudent(mContext, inputMail, inputPwd);
+                        editor.putBoolean("isStudentConnected", true);
+                        editor.apply();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                     }
                 }else{
+                    editor.putBoolean("isStudentConnected", true);
+                    editor.apply();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }

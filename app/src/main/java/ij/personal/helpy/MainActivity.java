@@ -1,6 +1,7 @@
 package ij.personal.helpy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 import ij.personal.helpy.TopicList.TopicListActivity;
+import ij.personal.helpy.authentication.LoginActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,11 +23,16 @@ public class MainActivity extends AppCompatActivity
     private Button btnBesoin;
     private Button btnPropose;
     private Button btnGestion;
+    public SharedPreferences settings;
+    public SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        settings = getSharedPreferences("UserInfo", 0);
+        editor = settings.edit();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -110,7 +117,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_profil) {
             startActivity(new Intent(this, SettingsActivity.class));
         } else if (id == R.id.nav_deconnect) {
-
+            editor.putBoolean("isStudentConnected", false);
+            editor.apply();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         } else if (id == R.id.nav_demo) {
 
         } else if (id == R.id.nav_propos) {

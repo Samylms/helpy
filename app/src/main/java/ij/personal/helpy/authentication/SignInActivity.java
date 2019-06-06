@@ -34,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
     String inputName;
     String inputPromotion;
     public SharedPreferences settings;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         settings = getSharedPreferences("UserInfo", 0);
+        editor = settings.edit();
 
         mContext = this;
         txtName = findViewById(R.id.txtName);
@@ -70,8 +72,16 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "Veuillez saisir tous les champs.", Toast.LENGTH_SHORT).show();
                     } else {
                         registerStudent(mContext, inputName, inputMail, inputPwd, inputPromotion);
+                        editor.putBoolean("isStudentConnected", true);
+                        editor.apply();
+                        LoginActivity.loginActivity.finish();
+                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                        finish();
                     }
                 }else{
+                    editor.putBoolean("isStudentConnected", true);
+                    editor.apply();
+                    LoginActivity.loginActivity.finish();
                     startActivity(new Intent(SignInActivity.this, MainActivity.class));
                     finish();
                 }
