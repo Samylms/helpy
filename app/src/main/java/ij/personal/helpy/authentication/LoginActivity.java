@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         // ----------------------------------------
         // ------------ SERVER STATE --------------
         // ----------------------------------------
+        //todo: add switch button server ON OFF
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("isServerOK", false);
         editor.apply();

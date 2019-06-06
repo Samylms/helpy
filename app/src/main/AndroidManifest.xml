@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Contact_Activity.ContactActivity"
-            android:parentActivityName=".TopicList.TopicListActivity"></activity>
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Contact_Activity.ContactActivity"
+            android:parentActivityName=".TopicList.TopicListActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -37,12 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Contact_Activity.Demande_aide.Demande_Activity"
-            android:parentActivityName=".TopicList.TopicListActivity" />
-        <activity
-            android:name=".Contact_Activity.Propose_aide.Propose_Activity"
-            android:parentActivityName=".TopicList.TopicListActivity" />
+
     </application>
 
 </manifest>

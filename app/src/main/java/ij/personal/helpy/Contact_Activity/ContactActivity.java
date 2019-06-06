@@ -69,7 +69,7 @@ public class ContactActivity extends AppCompatActivity {
             requestLayoutManager = new LinearLayoutManager(this);
             requestRecyclerView.setLayoutManager(requestLayoutManager);
             // specify an adapter
-            requestAdapter = new ContactAdapter(requestList, this);
+            requestAdapter = new ContactAdapter(requestList, this, type);
             requestRecyclerView.setAdapter(requestAdapter);
         } else {
             // todo: display "Aucun sujet en cours"

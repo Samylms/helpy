@@ -28,10 +28,12 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_ITEM = 1;
     private List<Request> mTopicRequests;
     private Context mContext;
+    private String type;
 
-    public ContactAdapter(List<Request> topicRequests, Context mContext) {
+    public ContactAdapter(List<Request> topicRequests, Context mContext, String type) {
         this.mContext = mContext;
         this.mTopicRequests = topicRequests;
+        this.type = type;
     }
 
     @Override
@@ -90,7 +92,11 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (holder instanceof VHHeader) {
             //cast holder to VHHeader and set data for header.
             VHHeader vhHeader = (VHHeader) holder;
-            vhHeader.txtHeaderTitle.setText("Qui contacter?");
+            if (type.equals("demande")){
+                vhHeader.txtHeaderTitle.setText("Ces élèves peuvent vous aider");
+            }else{
+                vhHeader.txtHeaderTitle.setText("Ces élèves ont besoin de vous");
+            }
 
         }
     }

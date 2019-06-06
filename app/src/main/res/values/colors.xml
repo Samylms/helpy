@@ -11,5 +11,6 @@
     <color name="grey">#CCCCCC</color>
     <color name="darkGrey">#666666</color>
     <color name="lightGrey">#F3F3F3</color>
+    <color name="lightGreySettings">#DCDCDC</color>
     <color name="white">#FFFFFF</color>
 </resources>

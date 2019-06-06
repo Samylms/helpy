@@ -95,7 +95,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 vhItem.txtRequestQtyRed.setText("4");
             }
 
-            vhItem.lytIconPerson.setOnClickListener(new View.OnClickListener() {
+            vhItem.icPerson.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, ContactActivity.class);
@@ -111,12 +111,21 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             });
 
             if (TopicListActivity.proposition) {
-                vhItem.icPerson.setImageResource(R.drawable.ic_person_red);
+                vhItem.icPerson.setImageResource(R.drawable.ic_persons_red);
                 vhItem.checkBoxRequestRed.setVisibility(View.GONE);
                 vhItem.checkBoxRequestGreen.setVisibility(View.VISIBLE);
 //                vhItem.txtRequestQtyGreen.setBackgroundResource(R.drawable.button_red);
-                vhItem.txtRequestQtyGreen.setVisibility(View.GONE);
-                vhItem.txtRequestQtyRed.setVisibility(View.VISIBLE);
+            }
+            vhItem.txtRequestQtyRed.setVisibility(View.GONE);
+            vhItem.txtRequestQtyGreen.setVisibility(View.GONE);
+
+            // display icon_person only if count > 1
+            if (Prefs.isServerOK(mContext)){
+                // todo: handle display
+            }else{
+                if (position == 2 || position == 3){
+                    vhItem.icPerson.setVisibility(View.GONE);
+                }
             }
 
             // handle adding or delete Request concerning the topic
