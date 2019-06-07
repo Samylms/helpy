@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import ij.personal.helpy.TopicList.TopicListActivity;
 import ij.personal.helpy.authentication.LoginActivity;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity
     private Button btnBesoin;
     private Button btnPropose;
     private Button btnGestion;
+    private ImageView icMenu;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
 
@@ -30,13 +34,25 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         settings = getSharedPreferences("UserInfo", 0);
         editor = settings.edit();
 
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        // to open the navigation drawer menu
+        icMenu = findViewById(R.id.ic_menu);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        icMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(navigationView);
+            }
+        });
+        navigationView.setNavigationItemSelectedListener(this);
 
         btnBesoin = findViewById(R.id.btnBesoin);
         btnBesoin.setOnClickListener(new View.OnClickListener() {
@@ -65,15 +81,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         });
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -84,13 +91,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

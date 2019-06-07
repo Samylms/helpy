@@ -1,6 +1,9 @@
 package ij.personal.helpy.Contact_Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,11 +32,13 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<Request> mTopicRequests;
     private Context mContext;
     private String type;
+    private String topicName;
 
-    public ContactAdapter(List<Request> topicRequests, Context mContext, String type) {
+    public ContactAdapter(List<Request> topicRequests, Context mContext, String type, String topicName) {
         this.mContext = mContext;
         this.mTopicRequests = topicRequests;
         this.type = type;
+        this.topicName = topicName;
     }
 
     @Override
@@ -72,7 +77,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
 
             // get Student Info
-            Student student;
+            final Student student;
             if (Prefs.isServerOK(mContext)) {
                 student = this.getStudent(getItem(position).getIdStudent());
             } else {
@@ -81,13 +86,53 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             // put student info on the card
             vhItem.txtStudentName.setText(student.getFirstName() + " " + student.getLastName());
-            // todo: make intent to contact (phone, mail, sms, etc)
             // set visibility to contact icons
             if(student.getPrefPhone() == 0) vhItem.icPhone.setVisibility(View.GONE);
             if(student.getPrefSms() == 0) vhItem.icSms.setVisibility(View.GONE);
             if(student.getPrefMail() == 0) vhItem.icMail.setVisibility(View.GONE);
             if(student.getPrefAlertP() == 0) vhItem.icAlert.setVisibility(View.GONE);
 
+            // todo: make intent to contact (phone, mail, sms, etc)
+            vhItem.icPhone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+33" + student.getPhone(), null)));
+                }
+            });
+
+            vhItem.icSms.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + student.getPhone()));
+                    if (type.equals("demande")){
+                        intent.putExtra("sms_body", "Hello! J'ai besoin d'aide pour le sujet " + topicName + ". "
+                                + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));
+                    }else{
+                        intent.putExtra("sms_body", "Hello! Je peux t'aider pour le sujet " + topicName + ". "
+                                + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));
+                    }
+                    mContext.startActivity(intent);
+                }
+            });
+
+            vhItem.icMail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");
+                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{student.getMail()});
+                    if (type.equals("demande")){
+                        i.putExtra(Intent.EXTRA_SUBJECT, "Helpy - Demande d'aide");
+                        i.putExtra(Intent.EXTRA_TEXT, "Hello! J'ai besoin d'aide pour le sujet " + topicName + ". "
+                                + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));
+                    }else{
+                        i.putExtra(Intent.EXTRA_SUBJECT, "Helpy - Proposition d'aide");
+                        i.putExtra(Intent.EXTRA_TEXT, "Hello! J'ai peux t'aider pour le sujet " + topicName + ". "
+                                + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));
+                    }
+                    mContext.startActivity(i);
+                }
+            });
 
         } else if (holder instanceof VHHeader) {
             //cast holder to VHHeader and set data for header.
