@@ -26,12 +26,14 @@ import ij.personal.helpy.R;
 
 public class TopicListActivity extends AppCompatActivity {
 
+    public static final String BASE_URL = "http://54.37.157.172:3000";
     private RecyclerView topicRecyclerView;
     private RecyclerView.Adapter topicAdapter;
     private RecyclerView.LayoutManager topicLayoutManager;
     private Context mContext;
     private String type;
     public static boolean proposition;
+    public TopicListActivity mTopicListActivity;
 
     private List<Topic> topics;
 
@@ -41,7 +43,7 @@ public class TopicListActivity extends AppCompatActivity {
 
         // to know if its an need or a can
         type = getIntent().getStringExtra("type");
-        if (type.equals("proposition")){
+        if (type.equals("Proposition")){
             proposition = true;
         }else{
             proposition = false;
@@ -50,6 +52,7 @@ public class TopicListActivity extends AppCompatActivity {
         mContext = this;
 
         setContentView(R.layout.activity_topic_list);
+        mTopicListActivity = this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,38 +75,13 @@ public class TopicListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        // GET ALL DATA
-        if (Prefs.isServerOK(mContext)) {
-            topics = getTopicList(this, Prefs.getClassId(mContext));
-        } else {
-            // server is killed (only for test)
-            topics = new ArrayList<>();
-            if (proposition){
-                topics.add(new Topic(0, "Lab 2", 1, 1));
-                topics.add(new Topic(0, "TP", 1, 2));
-            }else {
-                topics.add(new Topic(0, "Lab 3", 1, 1));
-                topics.add(new Topic(0, "Lab 2", 1, 1));
-                topics.add(new Topic(0, "Projet", 1, 2));
-                topics.add(new Topic(0, "Revision", 1, 3));
-                topics.add(new Topic(0, "TP", 1, 2));
-            }
-        }
 
-        // Send data to the adapter to display
-        if (topics != null) {
-            // handle recyclerView
-            topicRecyclerView = findViewById(R.id.topicRecyclerView);
-            topicRecyclerView.setHasFixedSize(true);
-            // use a linear layout manager
-            topicLayoutManager = new LinearLayoutManager(this);
-            topicRecyclerView.setLayoutManager(topicLayoutManager);
-            // specify an adapter
-            topicAdapter = new TopicAdapter(topics, this);
-            topicRecyclerView.setAdapter(topicAdapter);
-        }else{
-            // todo: display "Aucun sujet en cours"
-        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRecyclerView();
     }
 
     // Pour revenir à l'activité précédente via la flèche de retour
@@ -118,10 +96,10 @@ public class TopicListActivity extends AppCompatActivity {
         JsonObject jsonResponce;
         try {
             jsonResponce = Ion.with(context)
-                    .load("http://185.225.210.63:3000/sujet/classe/" + idClass)
+                    .load(BASE_URL + "/sujet/classe/" + idClass)
                     .asJsonObject()
                     .get();
-            Log.d("DEBUG", "jsonResponce: OK");
+            Log.d("DEBUG", jsonResponce.toString());
 
             List<Topic> topicList = new ArrayList<>();
             JsonArray jsonArrayTopics = jsonResponce.get("sujet").getAsJsonArray();
@@ -129,7 +107,7 @@ public class TopicListActivity extends AppCompatActivity {
             for (JsonElement jsonTopic : jsonArrayTopics) {
                 int idTopic = jsonTopic.getAsJsonObject().get("idSujet").getAsInt();
                 String title = jsonTopic.getAsJsonObject().get("titre").getAsString();
-                int idSubject = jsonTopic.getAsJsonObject().get("idMatiere").getAsInt();
+                int idSubject = jsonTopic.getAsJsonObject().get("MatiereidMatiere").getAsInt();
                 Topic topic = new Topic(idTopic, title, idClass, idSubject);
                 topicList.add(topic);
             }
@@ -150,4 +128,40 @@ public class TopicListActivity extends AppCompatActivity {
         return null;
     }
 
+    public void updateRecyclerView(){
+        if (Prefs.isServerOK(mContext)) {
+            // GET ALL DATA
+            if (Prefs.isServerOK(mContext)) {
+                topics = getTopicList(this, Prefs.getClassId(mContext));
+            } else {
+                // server is killed (only for test)
+                topics = new ArrayList<>();
+                if (proposition){
+                    topics.add(new Topic(0, "Lab 2", 1, 1));
+                    topics.add(new Topic(0, "TP", 1, 2));
+                }else {
+                    topics.add(new Topic(0, "Lab 3", 1, 1));
+                    topics.add(new Topic(0, "Lab 2", 1, 1));
+                    topics.add(new Topic(0, "Projet", 1, 2));
+                    topics.add(new Topic(0, "Revision", 1, 3));
+                    topics.add(new Topic(0, "TP", 1, 2));
+                }
+            }
+
+            // Send data to the adapter to display
+            if (topics != null) {
+                // handle recyclerView
+                topicRecyclerView = findViewById(R.id.topicRecyclerView);
+                topicRecyclerView.setHasFixedSize(true);
+                // use a linear layout manager
+                topicLayoutManager = new LinearLayoutManager(this);
+                topicRecyclerView.setLayoutManager(topicLayoutManager);
+                // specify an adapter
+                topicAdapter = new TopicAdapter(topics, this, this.type, mTopicListActivity);
+                topicRecyclerView.setAdapter(topicAdapter);
+            }else{
+                // todo: display "Aucun sujet en cours"
+            }
+        }
+    }
 }

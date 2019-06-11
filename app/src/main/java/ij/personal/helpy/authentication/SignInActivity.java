@@ -22,6 +22,8 @@ import ij.personal.helpy.R;
 
 public class SignInActivity extends AppCompatActivity {
 
+    public static final String BASE_URL = "http://54.37.157.172:3000";
+//    public static final String BASE_URL = "http://185.225.210.63:3000";
     private EditText txtName;
     private EditText txtMail;
     private EditText txtPwd;
@@ -75,8 +77,6 @@ public class SignInActivity extends AppCompatActivity {
                         editor.putBoolean("isStudentConnected", true);
                         editor.apply();
                         LoginActivity.loginActivity.finish();
-                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                        finish();
                     }
                 }else{
                     editor.putBoolean("isStudentConnected", true);
@@ -101,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
         Log.d("debug", json.toString());
 
         Ion.with(context)
-                .load("http://185.225.210.63:3000/eleve/inscription")
+                .load(BASE_URL + "/eleve/inscription")
                 .setJsonObjectBody(json)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
@@ -126,11 +126,12 @@ public class SignInActivity extends AppCompatActivity {
                                 int idClass = result.getAsJsonObject().get("idClasse").getAsInt();
                                 int idEleve = result.getAsJsonObject().get("idEleve").getAsInt();
                                 handleSignInSuccess(idClass, idEleve);
+                                Log.d("debug", "************** student sign In");
+                                displayUserInfos();
                             }
                         }
                     }
                 });
-        Log.d("debug", "************** student sign In");
     }
 
     public void handleSignInSuccess(int idClasse, int idEleve) {
@@ -139,8 +140,15 @@ public class SignInActivity extends AppCompatActivity {
         editor.putInt("studentId", idEleve);
         editor.putInt("classId", idClasse);
         editor.putString("studentLastName", inputName);
+        editor.putString("studentFirstName", "");
         editor.putString("studentEmail", inputMail);
         editor.putString("studentPwd", inputPwd);
+        editor.putInt("studentPhone", 0);
+        editor.putInt("studentPrefPhone", 1);
+        editor.putInt("studentPrefSms", 1);
+        editor.putInt("studentPrefMail", 1);
+        editor.putInt("studentPrefAlertP", 1);
+        editor.putInt("studentPrefAlertG", 1);
         editor.putString("className", inputPromotion);
         editor.putBoolean("isStudentConnected",true);
         editor.apply();
@@ -149,4 +157,22 @@ public class SignInActivity extends AppCompatActivity {
         startActivity(new Intent(SignInActivity.this, MainActivity.class));
         finish();
     }
+
+    public void displayUserInfos(){
+        Log.d("debug", "classId : " + String.valueOf(Prefs.getClassId(mContext)));
+        Log.d("debug", "className : " + Prefs.getClassName(mContext));
+        Log.d("debug", "StudentId : " + String.valueOf(Prefs.getStudentId(mContext)));
+        Log.d("debug", "StudentMail : " + Prefs.getStudentEmail(mContext));
+        Log.d("debug", "studentPwd : " + Prefs.getStudentPwd(mContext));
+        Log.d("debug", "studentFistName : " + Prefs.getStudentFirstName(mContext));
+        Log.d("debug", "studentLastName : " + Prefs.getStudentLastName(mContext));
+        Log.d("debug", "studentPhone : " + String.valueOf(Prefs.getStudentPhone(mContext)));
+        Log.d("debug", "prefPhone : " + String.valueOf(Prefs.getStudentPrefPhone(mContext)));
+        Log.d("debug", "prefSms : " + String.valueOf(Prefs.getStudentPrefSms(mContext)));
+        Log.d("debug", "prefMail : " + String.valueOf(Prefs.getStudentPrefMail(mContext)));
+        Log.d("debug", "prefAlertP : " + String.valueOf(Prefs.getStudentPrefAlertP(mContext)));
+        Log.d("debug", "prefAlertG : " + String.valueOf(Prefs.getStudentPrefAlertG(mContext)));
+    }
+
+    //todo: redirect after signIn
 }

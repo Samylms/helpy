@@ -3,6 +3,7 @@ package ij.personal.helpy.TopicList;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import ij.personal.helpy.Contact_Activity.ContactActivity;
@@ -25,15 +32,21 @@ import ij.personal.helpy.R;
 
 
 public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public static final String BASE_URL = "http://54.37.157.172:3000";
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
-    private List<Topic> mClassTopics;
+    public List<Topic> mClassTopics;
     private Context mContext;
-    private int proposalRequestCount;
+    private int oppositRequestCount;
+    private int requestCount;
+    private String type;
+    public TopicListActivity mTopicListActivity;
 
-    public TopicAdapter(List<Topic> classTopics, Context mContext) {
+    public TopicAdapter(List<Topic> classTopics, Context mContext, String type, TopicListActivity parentActivity) {
         mClassTopics = classTopics;
         this.mContext = mContext;
+        this.type = type;
+        this.mTopicListActivity = parentActivity;
     }
 
     @Override
@@ -63,33 +76,36 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vhItem.txtTopicSubject.setText(String.valueOf(getItem(position).getTopicSubjectName(mContext)));
 
             final Topic topic = getItem(position);
-            proposalRequestCount = 0;
+            oppositRequestCount = 0;
+            requestCount = 0;
 
             // get request only if server is OK
             if (Prefs.isServerOK(mContext)) {
                 List<Request> topicRequests = topic.getTopicRequests(mContext);
+                requestCount = topicRequests.size();
                 // count the number of proposition on this topic
                 for (Request request : topicRequests) {
                     // test selon intent
-                    if (!TopicListActivity.proposition) {
-                        if (request.getType().equals("Proposition")) {
-                            proposalRequestCount += 1;
+                    if (type.equals("Demande")) {
+                        if (request.getType().equals("Proposition") && request.getIdStudent() != Prefs.getStudentId(mContext)) {
+                            oppositRequestCount += 1;
 
                             // check the box if student has a request on this topic
-                        } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
+                        } else if (request.getType().equals("Demande") && request.getIdStudent() == Prefs.getStudentId(mContext)) {
                             vhItem.checkBoxRequestRed.setChecked(true);
                         }
                     } else {
-                        if (request.getType().equals("demande")) {
-                            proposalRequestCount += 1;
+                        if (request.getType().equals("Demande") && request.getIdStudent() != Prefs.getStudentId(mContext)) {
+                            oppositRequestCount += 1;
 
                             // check the box if student has a request on this topic
-                        } else if (request.getIdStudent() == Prefs.getStudentId(mContext)) {
-                            vhItem.checkBoxRequestRed.setChecked(true);
+                        } else if (request.getType().equals("Proposition") && request.getIdStudent() == Prefs.getStudentId(mContext)) {
+                            vhItem.checkBoxRequestGreen.setChecked(true);
                         }
                     }
                 }
-                vhItem.txtRequestQtyGreen.setText(String.valueOf(proposalRequestCount));
+                vhItem.txtRequestQtyRed.setText(String.valueOf(oppositRequestCount));
+                vhItem.txtRequestQtyGreen.setText(String.valueOf(oppositRequestCount));
             } else {
                 vhItem.txtRequestQtyGreen.setText("3");
                 vhItem.txtRequestQtyRed.setText("4");
@@ -101,16 +117,12 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     Intent intent = new Intent(mContext, ContactActivity.class);
                     intent.putExtra("idTopic", topic.getIdTopic());
                     intent.putExtra("topicTitle", topic.getTitle());
-                    if (TopicListActivity.proposition) {
-                        intent.putExtra("type", "proposition");
-                    } else {
-                        intent.putExtra("type", "demande");
-                    }
+                    intent.putExtra("type", type);
                     mContext.startActivity(intent);
                 }
             });
 
-            if (TopicListActivity.proposition) {
+            if (type.equals("Proposition")) {
                 vhItem.icPerson.setImageResource(R.drawable.ic_persons_red);
                 vhItem.checkBoxRequestRed.setVisibility(View.GONE);
                 vhItem.checkBoxRequestGreen.setVisibility(View.VISIBLE);
@@ -119,9 +131,10 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             vhItem.txtRequestQtyRed.setVisibility(View.GONE);
             vhItem.txtRequestQtyGreen.setVisibility(View.GONE);
 
-            // display icon_person only if count > 1
+            // display icon_person only if count > 0
             if (Prefs.isServerOK(mContext)){
-                // todo: handle display
+                if(oppositRequestCount == 0)
+                    vhItem.icPerson.setVisibility(View.GONE);
             }else{
                 if (position == 2 || position == 3){
                     vhItem.icPerson.setVisibility(View.GONE);
@@ -133,19 +146,22 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        // todo: add
                         if (Prefs.isServerOK(mContext)) {
-                            topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
+                            addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
+                        }else{
+                            Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                         }
-                        //Toast
-                        Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                     } else {
-                        // todo: delete
                         if (Prefs.isServerOK(mContext)) {
-
+                            deleteRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
+                            if(requestCount == 1){
+                                mClassTopics.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                        }else {
+                            //Toast
+                            Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
                         }
-                        //Toast
-                        Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -153,19 +169,22 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        // todo: add
                         if (Prefs.isServerOK(mContext)) {
-                            topic.addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), "Demande");
+                            addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
+                        }else{
+                            Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                         }
-                        //Toast
-                        Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
                     } else {
-                        // todo: delete
                         if (Prefs.isServerOK(mContext)) {
-
+                            deleteRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
+                            if(requestCount == 1){
+                                mClassTopics.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                        }else {
+                            //Toast
+                            Toast.makeText(mContext, "Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
                         }
-                        //Toast
-                        Toast.makeText(mContext, "Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -228,5 +247,80 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public VHHeader(View itemView) {
             super(itemView);
         }
+    }
+
+    // API CALL
+    public void addRequestOnThisTopic(Context context, int idStudent, int idTopic) {
+        JsonObject json = new JsonObject();
+        json.addProperty("sujetId", idTopic);
+        json.addProperty("eleveId", idStudent);
+        json.addProperty("description", "hello Coco! Help me pleeeeease!");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String currentDateandTime = sdf.format(new Date());
+        json.addProperty("dateheure", currentDateandTime);
+        json.addProperty("type", type);
+        json.addProperty("flag", 1);
+
+        Log.d("debug", json.toString());
+
+        Ion.with(context)
+                .load(BASE_URL + "/demande/")
+                .setJsonObjectBody(json)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+                        if (e != null) {
+                            Log.d("DEBUG", e.toString());
+                            Toast.makeText(mContext, "Une erreur est survenue lors de l'ajout de la demande.", Toast.LENGTH_LONG).show();
+
+                        }
+                        if (result != null) {
+                            Log.d("debug", result.getAsJsonObject().toString());
+                            if(result.getAsJsonObject().get("code").getAsInt() == 0){
+                                Log.d("debug", "demande non ajouté");
+                                Toast.makeText(mContext, "La " + type.toLowerCase() + " n'a pas été ajoutée.", Toast.LENGTH_LONG).show();
+                                notifyDataSetChanged();
+                            }else{
+                                Log.d("debug", "************** request added");
+                                if (type.equals("Proposition")){
+                                    Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    // API CALL
+    public void deleteRequestOnThisTopic(Context context, int idStudent, int idTopic){
+        Ion.with(context)
+                .load("DELETE", BASE_URL + "/demande/" + String.valueOf(idStudent) + "/" + String.valueOf(idTopic))
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+                        if (e != null) {
+                            Log.d("DEBUG", e.toString());
+                            Toast.makeText(mContext, "Une erreur est survenue lors de la suppression de la demande.", Toast.LENGTH_LONG).show();
+
+                        }
+                        if (result != null) {
+                            Log.d("debug", result.getAsJsonObject().toString());
+//                            if(result.getAsJsonObject().get("code").getAsInt() == 0){
+//                                Log.d("debug", "demande non supprimée");
+//                                Toast.makeText(mContext, "La " + type.toLowerCase() + " n'a pas été supprimée.", Toast.LENGTH_LONG).show();
+//                                notifyDataSetChanged();
+//                            }else{
+                                Log.d("debug", "************** request deleted");
+                                Toast.makeText(mContext, "Votre " + type.toLowerCase() + " d'aide est supprimée.", Toast.LENGTH_LONG).show();
+//                            }
+                        }
+                    }
+                });
     }
 }

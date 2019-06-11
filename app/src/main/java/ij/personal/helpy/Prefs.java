@@ -32,6 +32,10 @@ public class Prefs {
         return context.getSharedPreferences("UserInfo", 0).getString("studentPwd", "");
     }
 
+    public static int getStudentPhone(Context context){
+        return context.getSharedPreferences("UserInfo", 0).getInt("studentPhone", 0);
+    }
+
     public static int getStudentPrefPhone(Context context){
         return context.getSharedPreferences("UserInfo", 0).getInt("studentPrefPhone", 0);
     }

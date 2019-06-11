@@ -30,6 +30,7 @@
         android:layout_weight="1"
         android:background="@drawable/edit_text_rectangle"
         android:hint="@string/subject_name"
+        android:inputType="textEmailAddress"
         android:padding="@dimen/small_medium_margin"
         android:textSize="@dimen/small_text_size" />
 

@@ -3,6 +3,7 @@ package ij.personal.helpy.Models;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -17,10 +18,12 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import ij.personal.helpy.Prefs;
+import ij.personal.helpy.R;
 
 // SUJETS
 public class Topic {
 
+    public static final String BASE_URL = "http://54.37.157.172:3000";
     private int idTopic;
     private String title;
     private int idClass;
@@ -62,7 +65,7 @@ public class Topic {
         if (Prefs.isServerOK(context)) {
             try {
                 jsonResponce = Ion.with(context)
-                        .load("http://185.225.210.63:3000/matiere/" + String.valueOf(this.getIdSubject()))
+                        .load( BASE_URL + "/matiere/" + String.valueOf(this.getIdSubject()))
                         .asJsonObject()
                         .get();
                 Log.d("DEBUG", "jsonResponce: OK");
@@ -102,10 +105,11 @@ public class Topic {
     public List<Request> getTopicRequests(Context context) {
         try {
             jsonResponce = Ion.with(context)
-                    .load("http://185.225.210.63:3000/demande/sujet/" + String.valueOf(this.getIdTopic()))
+                    .load(BASE_URL + "/demande/sujet/" + String.valueOf(this.getIdTopic()))
                     .asJsonObject()
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
+            Log.d("debug", jsonResponce.toString());
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -116,54 +120,23 @@ public class Topic {
         }
 
         topicRequests = new ArrayList<>();
-        JsonArray jsonArrayRequests = jsonResponce.get("demande").getAsJsonArray();
+        if (jsonResponce != null) {
+            JsonArray jsonArrayRequests = jsonResponce.get("demande").getAsJsonArray();
 
-        for (JsonElement jsonRequest : jsonArrayRequests) {
+            for (JsonElement jsonRequest : jsonArrayRequests) {
 
-            int idStudent = jsonRequest.getAsJsonObject().get("eleveId").getAsInt();
-            String description = jsonRequest.getAsJsonObject().get("description").getAsString();
-            String dateTime = jsonRequest.getAsJsonObject().get("dateheure").getAsString();
-            String type = jsonRequest.getAsJsonObject().get("type").getAsString();
-            Request request = new Request(this.idTopic, idStudent, description, dateTime, type);
+                int idStudent = jsonRequest.getAsJsonObject().get("EleveidEleve").getAsInt();
+                String description = jsonRequest.getAsJsonObject().get("description").getAsString();
+                String dateTime = jsonRequest.getAsJsonObject().get("dateheure").getAsString();
+                String type = jsonRequest.getAsJsonObject().get("type").getAsString();
+                Request request = new Request(this.idTopic, idStudent, description, dateTime, type);
 
-            topicRequests.add(request);
+                topicRequests.add(request);
 
+            }
         }
         Log.d("debug", String.valueOf(this.idTopic));
         Log.d("debug", topicRequests.toString());
         return topicRequests;
-    }
-
-    // API CALL
-    public void addRequestOnThisTopic(Context context, int idStudent, String type) {
-        JsonObject json = new JsonObject();
-        json.addProperty("sujetId", this.getIdTopic());
-        json.addProperty("eleveId", idStudent);
-        json.addProperty("description", "hello Coco! Help me pleeeeease!");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String currentDateandTime = sdf.format(new Date());
-        json.addProperty("dateheure", currentDateandTime);
-        json.addProperty("type", type);
-        json.addProperty("flag", 1);
-
-        Log.d("debug", json.toString());
-
-        Ion.with(context)
-                .load("http://185.225.210.63:3000/demande/")
-                .setJsonObjectBody(json)
-                .asJsonObject()
-                .setCallback(new FutureCallback<JsonObject>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonObject result) {
-                        // do stuff with the result or error
-                        if (e != null) {
-                            Log.d("DEBUG", e.toString());
-                        }
-                        if (result != null) {
-                            Log.d("debug", result.getAsJsonObject().toString());
-                        }
-                    }
-                });
-        Log.d("debug", "************** request adding");
     }
 }

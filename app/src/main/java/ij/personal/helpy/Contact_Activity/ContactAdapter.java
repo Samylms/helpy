@@ -3,7 +3,6 @@ package ij.personal.helpy.Contact_Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +26,8 @@ import ij.personal.helpy.R;
 
 
 public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    public static final String BASE_URL = "http://54.37.157.172:3000";
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     private List<Request> mTopicRequests;
@@ -92,7 +93,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if(student.getPrefMail() == 0) vhItem.icMail.setVisibility(View.GONE);
             if(student.getPrefAlertP() == 0) vhItem.icAlert.setVisibility(View.GONE);
 
-            // todo: make intent to contact (phone, mail, sms, etc)
+            // todo: make intent to contact (by notification)
             vhItem.icPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -137,7 +138,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (holder instanceof VHHeader) {
             //cast holder to VHHeader and set data for header.
             VHHeader vhHeader = (VHHeader) holder;
-            if (type.equals("demande")){
+            if (type.equals("Demande")){
                 vhHeader.txtHeaderTitle.setText("Ces élèves peuvent vous aider");
             }else{
                 vhHeader.txtHeaderTitle.setText("Ces élèves ont besoin de vous");
@@ -202,7 +203,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public Student getStudent(int idStudent) {
         try {
             JsonObject jsonResponce = Ion.with(mContext)
-                    .load("http://185.225.210.63:3000/eleve/" + String.valueOf(idStudent))
+                    .load(BASE_URL + "/eleve/" + String.valueOf(idStudent))
                     .asJsonObject()
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
@@ -216,9 +217,9 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             student.setPrefPhone(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefAppel").getAsInt());
             student.setPrefSms(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMessage").getAsInt());
             student.setPrefMail(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMail").getAsInt());
-            student.setPrefAlertP(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifPersonnelles").getAsInt());
+            student.setPrefAlertP(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifPersonelles").getAsInt());
             student.setPrefAlertG(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifGlobales").getAsInt());
-            student.setIdClass(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("ClasseIdClasse").getAsInt());
+            student.setIdClass(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("ClasseidClasse").getAsInt());
 
 
             Log.d("debug", student.toString());

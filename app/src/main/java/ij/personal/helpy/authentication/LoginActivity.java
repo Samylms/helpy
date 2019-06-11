@@ -27,6 +27,8 @@ import ij.personal.helpy.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String BASE_URL = "http://54.37.157.172:3000";
+//    public static final String BASE_URL = "http://185.225.210.63:3000";
     private TextView txtCreateAccount;
     private Button btnConnect;
     private EditText txtInputMail;
@@ -51,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         // ----------------------------------------
         // ------------ SERVER STATE --------------
         // ----------------------------------------
-        editor.putBoolean("isServerOK", false);
+        editor.putBoolean("isServerOK", true);
         editor.commit();
         Log.d("debug", "isServerOK = "  + String.valueOf(Prefs.isServerOK(mContext)));
         // ----------------------------------------
@@ -89,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                         logStudent(mContext, inputMail, inputPwd);
                         editor.putBoolean("isStudentConnected", true);
                         editor.apply();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
                     }
                 }else{
                     editor.putBoolean("isStudentConnected", true);
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("debug", json.toString());
 
         Ion.with(context)
-                .load("http://185.225.210.63:3000/eleve/login")
+                .load( BASE_URL + "/eleve/login")
                 .setJsonObjectBody(json)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
@@ -132,11 +132,12 @@ public class LoginActivity extends AppCompatActivity {
                                 int idEleve = result.getAsJsonObject().get("idEleve").getAsInt();
                                 int idClasse = result.getAsJsonObject().get("classeId").getAsInt();
                                 handleLoginSuccess(idClasse, idEleve);
+                                Log.d("debug", "************** student Log In");
+                                displayUserInfos();
                             }
                         }
                     }
                 });
-        Log.d("debug", "************** student Log In");
     }
 
     public void handleLoginSuccess(int idClass, int idStudent){
@@ -176,12 +177,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public Student getStudent(int idStudent){
+        Log.d("debug", "idStudent" + idStudent);
         try {
             JsonObject jsonResponce = Ion.with(mContext)
-                    .load("http://185.225.210.63:3000/eleve/" + String.valueOf(idStudent))
+                    .load(BASE_URL + "/eleve/" + String.valueOf(idStudent))
                     .asJsonObject()
                     .get();
-            Log.d("DEBUG", "jsonResponce: OK");
+            Log.d("DEBUG", jsonResponce.toString());
 
             Student student = new Student(idStudent, inputMail, inputPwd, "", "", 0,
                     0, 0,0,0,0,0);
@@ -191,9 +193,9 @@ public class LoginActivity extends AppCompatActivity {
             student.setPrefPhone(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefAppel").getAsInt());
             student.setPrefSms(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMessage").getAsInt());
             student.setPrefMail(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefMail").getAsInt());
-            student.setPrefAlertP(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifPersonnelles").getAsInt());
+            student.setPrefAlertP(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifPersonelles").getAsInt());
             student.setPrefAlertG(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("prefNotifGlobales").getAsInt());
-            student.setIdClass(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("ClasseIdClasse").getAsInt());
+            student.setIdClass(jsonResponce.get("eleve").getAsJsonArray().get(0).getAsJsonObject().get("ClasseidClasse").getAsInt());
 
 
             Log.d("debug", student.toString());
@@ -214,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
     public String getClassname(int idClass){
         try {
             JsonObject jsonResponce = Ion.with(mContext)
-                    .load("http://185.225.210.63:3000/classe/" + String.valueOf(idClass))
+                    .load(BASE_URL + "/classe/" + String.valueOf(idClass))
                     .asJsonObject()
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
@@ -231,5 +233,21 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("DEBUG", e.toString());
         }
         return null;
+    }
+
+    public void displayUserInfos(){
+        Log.d("debug", "classId : " + String.valueOf(Prefs.getClassId(mContext)));
+        Log.d("debug", "className : " + Prefs.getClassName(mContext));
+        Log.d("debug", "StudentId : " + String.valueOf(Prefs.getStudentId(mContext)));
+        Log.d("debug", "StudentMail : " + Prefs.getStudentEmail(mContext));
+        Log.d("debug", "studentPwd : " + Prefs.getStudentPwd(mContext));
+        Log.d("debug", "studentFistName : " + Prefs.getStudentFirstName(mContext));
+        Log.d("debug", "studentLastName : " + Prefs.getStudentLastName(mContext));
+        Log.d("debug", "studentPhone : " + String.valueOf(Prefs.getStudentPhone(mContext)));
+        Log.d("debug", "prefPhone : " + String.valueOf(Prefs.getStudentPrefPhone(mContext)));
+        Log.d("debug", "prefSms : " + String.valueOf(Prefs.getStudentPrefSms(mContext)));
+        Log.d("debug", "prefMail : " + String.valueOf(Prefs.getStudentPrefMail(mContext)));
+        Log.d("debug", "prefAlertP : " + String.valueOf(Prefs.getStudentPrefAlertP(mContext)));
+        Log.d("debug", "prefAlertG : " + String.valueOf(Prefs.getStudentPrefAlertG(mContext)));
     }
 }

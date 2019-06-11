@@ -24,6 +24,7 @@ import ij.personal.helpy.R;
 
 public class ContactActivity extends AppCompatActivity {
 
+    public static final String BASE_URL = "http://54.37.157.172:3000";
     private String type;
     private String topicTitle;
     private int idTopic;
@@ -46,7 +47,7 @@ public class ContactActivity extends AppCompatActivity {
 
         // modify toolbar
         ActionBar toolbar = getSupportActionBar();
-        if (type.equals("proposition")) {
+        if (type.equals("Proposition")) {
             toolbar.setBackgroundDrawable(new ColorDrawable(getColor(R.color.green)));
         } else {
             toolbar.setBackgroundDrawable(new ColorDrawable(getColor(R.color.red)));
@@ -99,10 +100,9 @@ public class ContactActivity extends AppCompatActivity {
 
     // API CALL
     public List<Request> getRequestList(Context context) {
-        List<Request> requests = new ArrayList<>();
         try {
             jsonResponce = Ion.with(context)
-                    .load("http://185.225.210.63:3000/demande/sujet/" + String.valueOf(this.idTopic))
+                    .load(BASE_URL + "/demande/sujet/" + String.valueOf(this.idTopic))
                     .asJsonObject()
                     .get();
             Log.d("DEBUG", "jsonResponce: OK");
@@ -115,12 +115,12 @@ public class ContactActivity extends AppCompatActivity {
             Log.d("DEBUG", "InterruptionException");
         }
 
-        requests = new ArrayList<>();
+        List<Request> requests = new ArrayList<>();
         JsonArray jsonArrayRequests = jsonResponce.get("demande").getAsJsonArray();
 
         for (JsonElement jsonRequest : jsonArrayRequests) {
 
-            int idStudent = jsonRequest.getAsJsonObject().get("eleveId").getAsInt();
+            int idStudent = jsonRequest.getAsJsonObject().get("EleveidEleve").getAsInt();
             String description = jsonRequest.getAsJsonObject().get("description").getAsString();
             String dateTime = jsonRequest.getAsJsonObject().get("dateheure").getAsString();
             String type = jsonRequest.getAsJsonObject().get("type").getAsString();
@@ -129,15 +129,13 @@ public class ContactActivity extends AppCompatActivity {
             requests.add(request);
 
         }
-        Log.d("debug", String.valueOf(this.idTopic));
-        Log.d("debug", requests.toString());
-
         // keep only corresponding request type
         for (Request request : requests) {
-            if (!request.getType().equals(this.type)){
+            if (request.getType().equals(this.type)){
                 requests.remove(request);
             }
         }
+        Log.d("debug", "request count :   " + requests.size());
 
         return requests;
     }

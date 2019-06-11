@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TopicListActivity.class);
-                intent.putExtra("type", "demande");
+                intent.putExtra("type", "Demande");
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TopicListActivity.class);
-                intent.putExtra("type", "proposition");
+                intent.putExtra("type", "Proposition");
                 startActivity(intent);
             }
         });
