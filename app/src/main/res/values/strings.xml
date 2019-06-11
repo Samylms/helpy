@@ -8,6 +8,10 @@
     <string name="title_need_help">J\'ai besoin d\'aide</string>
     <string name="title_can_help">Je peux aider</string>
     <string name="title_which_subject">Pour quel sujet ?</string>
+    <string name="toast_add_as_needer">Vous êtes ajouté comme demandeur d\'aide pour ce sujet.</string>
+    <string name="toast_add_as_helper">Vous êtes ajouté comme proposeur d\'aide pour ce sujet.</string>
+    <string name="toast_need_help_removed">Votre demande d\'aide est supprimée.</string>
+    <string name="toast_can_help_removed">Votre proposition d\'aide est supprimée.</string>
 
     <!--AddTopicActivity-->
     <string name="title_add_new_subject">Ajouter un nouveau sujet</string>
@@ -34,6 +38,10 @@
     <string name="menu_send">Send</string>
 
     <!--LoginActivity-->
+    <string name="lbl_connect">Se connecter</string>
+    <string name="lbl_inscription">S\'inscrire</string>
+    <string name="lbl_already_member">Déjà membre</string>
+    <string name="lbl_create_account">Créer un compte</string>
     <string name="toast_login_error">Une erreur est survenue lors de l\'authentification, veuillez réessayer ultérieurement.</string>
     <string name="toast_login_invalid">Identifiants invalides</string>
     <string name="toast_signin_error">Une erreur est survenue lors de l\'inscription, veuillez réessayer ultérieurement.</string>
@@ -44,7 +52,10 @@
     <!--settingsActivity-->
     <string name="lbl_first_name">Prénom</string>
     <string name="lbl_last_name">Nom</string>
+    <string name="lbl_names">Prénom Nom</string>
     <string name="lbl_mail">Adresse mail</string>
+    <string name="lbl_pwd">Mot de passe</string>
+    <string name="lbl_promo_code">Code de la promotion</string>
     <string name="lbl_current_pwd">Mot de passe actuel</string>
     <string name="lbl_new_pwd">Nouveau mot de passe</string>
     <string name="lbl_confirm_pwd">Confirmer mot de passe</string>

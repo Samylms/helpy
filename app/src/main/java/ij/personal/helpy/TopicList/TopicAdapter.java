@@ -149,7 +149,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         if (Prefs.isServerOK(mContext)) {
                             addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
                         }else{
-                            Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, R.string.toast_add_as_needer, Toast.LENGTH_LONG).show();
                         }
                     } else {
                         if (Prefs.isServerOK(mContext)) {
@@ -160,7 +160,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             }
                         }else {
                             //Toast
-                            Toast.makeText(mContext, "Votre demande d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, R.string.toast_need_help_removed, Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -172,7 +172,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         if (Prefs.isServerOK(mContext)) {
                             addRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
                         }else{
-                            Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, R.string.toast_add_as_helper, Toast.LENGTH_LONG).show();
                         }
                     } else {
                         if (Prefs.isServerOK(mContext)) {
@@ -183,7 +183,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             }
                         }else {
                             //Toast
-                            Toast.makeText(mContext, "Votre proposition d'aide est supprimée.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, R.string.toast_can_help_removed, Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -285,9 +285,9 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             }else{
                                 Log.d("debug", "************** request added");
                                 if (type.equals("Proposition")){
-                                    Toast.makeText(mContext, "Vous êtes ajouté comme proposeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, R.string.toast_add_as_helper, Toast.LENGTH_LONG).show();
                                 }else{
-                                    Toast.makeText(mContext, "Vous êtes ajouté comme demandeur d'aide pour ce sujet.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, R.string.toast_add_as_helper, Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
