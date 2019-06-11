@@ -57,6 +57,11 @@ public class ContactActivity extends AppCompatActivity {
         // get the data
         if (Prefs.isServerOK(mContext)) {
             requestList = getRequestList(mContext);
+            for (int i=0; i<requestList.size(); i++){
+                if (requestList.get(i).getIdStudent() == Prefs.getStudentId(mContext)){
+                    requestList.remove(i);
+                }
+            }
         } else {
             requestList = getFakeRequestList();
         }
@@ -136,7 +141,6 @@ public class ContactActivity extends AppCompatActivity {
             }
         }
         Log.d("debug", "request count :   " + requests.size());
-
         return requests;
     }
 }

@@ -15,13 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import ij.personal.helpy.Contact_Activity.ContactActivity;
 
@@ -154,10 +158,10 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     } else {
                         if (Prefs.isServerOK(mContext)) {
                             deleteRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
-                            if(requestCount == 1){
-                                mClassTopics.remove(position);
-                                notifyItemRemoved(position);
-                            }
+//                            if(requestCount == 1){
+//                                mClassTopics = getTopicList(mContext, Prefs.getClassId(mContext));
+//                                notifyDataSetChanged();
+//                            }
                         }else {
                             //Toast
                             Toast.makeText(mContext, R.string.toast_need_help_removed, Toast.LENGTH_LONG).show();
@@ -177,10 +181,10 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     } else {
                         if (Prefs.isServerOK(mContext)) {
                             deleteRequestOnThisTopic(mContext, Prefs.getStudentId(mContext), topic.getIdTopic());
-                            if(requestCount == 1){
-                                mClassTopics.remove(position);
-                                notifyItemRemoved(position);
-                            }
+//                            if(requestCount == 1){
+//                                mClassTopics = getTopicList(mContext, Prefs.getClassId(mContext));
+//                                notifyDataSetChanged();
+//                            }
                         }else {
                             //Toast
                             Toast.makeText(mContext, R.string.toast_can_help_removed, Toast.LENGTH_LONG).show();
