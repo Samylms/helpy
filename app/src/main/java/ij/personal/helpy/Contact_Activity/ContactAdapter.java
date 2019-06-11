@@ -66,7 +66,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             // - get element from your dataset at this position
             // - replace the contents of the view with that element
 
-            if (getItem(position).getType().equals("proposition")) {
+            if (getItem(position).getType().equals("Proposition")) {
                 // put card color
                 vhItem.cardViewContact.setCardBackgroundColor(vhItem.cardViewContact.getContext().getColor(R.color.green));
                 // put card text
@@ -105,7 +105,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + student.getPhone()));
-                    if (type.equals("demande")){
+                    if (type.equals("Demande")){
                         intent.putExtra("sms_body", "Hello! J'ai besoin d'aide pour le sujet " + topicName + ". "
                                 + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));
                     }else{
@@ -122,7 +122,7 @@ public class ContactAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL  , new String[]{student.getMail()});
-                    if (type.equals("demande")){
+                    if (type.equals("Demande")){
                         i.putExtra(Intent.EXTRA_SUBJECT, "Helpy - Demande d'aide");
                         i.putExtra(Intent.EXTRA_TEXT, "Hello! J'ai besoin d'aide pour le sujet " + topicName + ". "
                                 + Prefs.getStudentFirstName(mContext) + " " + Prefs.getStudentLastName(mContext));

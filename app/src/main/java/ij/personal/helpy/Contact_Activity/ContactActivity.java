@@ -57,6 +57,12 @@ public class ContactActivity extends AppCompatActivity {
         // get the data
         if (Prefs.isServerOK(mContext)) {
             requestList = getRequestList(mContext);
+            // keep only corresponding request type
+            for (int i=0; i<requestList.size(); i++) {
+                if (requestList.get(i).getType().equals(this.type)){
+                    requestList.remove(i);
+                }
+            }
             for (int i=0; i<requestList.size(); i++){
                 if (requestList.get(i).getIdStudent() == Prefs.getStudentId(mContext)){
                     requestList.remove(i);
@@ -90,15 +96,15 @@ public class ContactActivity extends AppCompatActivity {
 
     public List<Request> getFakeRequestList() {
         List<Request> fakeRequests = new ArrayList<>();
-        if (this.type.equals("demande")) {
-            fakeRequests.add(new Request(this.idTopic, 4, "blabla", "now", "proposition"));
-            fakeRequests.add(new Request(this.idTopic, 5, "blabla", "now", "proposition"));
-            fakeRequests.add(new Request(this.idTopic, 3, "blabla", "now", "proposition"));
+        if (this.type.equals("Demande")) {
+            fakeRequests.add(new Request(this.idTopic, 4, "blabla", "now", "Proposition"));
+            fakeRequests.add(new Request(this.idTopic, 5, "blabla", "now", "Proposition"));
+            fakeRequests.add(new Request(this.idTopic, 3, "blabla", "now", "Proposition"));
         }else {
-            fakeRequests.add(new Request(this.idTopic, 6, "blabla", "now", "demande"));
-            fakeRequests.add(new Request(this.idTopic, 4, "blabla", "now", "demande"));
-            fakeRequests.add(new Request(this.idTopic, 3, "blabla", "now", "demande"));
-            fakeRequests.add(new Request(this.idTopic, 2, "blabla", "now", "demande"));
+            fakeRequests.add(new Request(this.idTopic, 6, "blabla", "now", "Demande"));
+            fakeRequests.add(new Request(this.idTopic, 4, "blabla", "now", "Demande"));
+            fakeRequests.add(new Request(this.idTopic, 3, "blabla", "now", "Demande"));
+            fakeRequests.add(new Request(this.idTopic, 2, "blabla", "now", "Demande"));
         }
         return fakeRequests;
     }
@@ -133,12 +139,6 @@ public class ContactActivity extends AppCompatActivity {
 
             requests.add(request);
 
-        }
-        // keep only corresponding request type
-        for (Request request : requests) {
-            if (request.getType().equals(this.type)){
-                requests.remove(request);
-            }
         }
         Log.d("debug", "request count :   " + requests.size());
         return requests;
