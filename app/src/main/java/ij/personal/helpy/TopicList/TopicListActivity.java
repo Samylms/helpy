@@ -43,9 +43,9 @@ public class TopicListActivity extends AppCompatActivity {
 
         // to know if its an need or a can
         type = getIntent().getStringExtra("type");
-        if (type.equals("Proposition")){
+        if (type.equals("Proposition")) {
             proposition = true;
-        }else{
+        } else {
             proposition = false;
         }
 
@@ -57,7 +57,7 @@ public class TopicListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if(proposition) {
+        if (proposition) {
             toolbar.setBackgroundColor(getColor(R.color.green));
             toolbar.setTitle(getString(R.string.title_can_help));
         }
@@ -128,40 +128,38 @@ public class TopicListActivity extends AppCompatActivity {
         return null;
     }
 
-    public void updateRecyclerView(){
+    public void updateRecyclerView() {
+        // GET ALL DATA
         if (Prefs.isServerOK(mContext)) {
-            // GET ALL DATA
-            if (Prefs.isServerOK(mContext)) {
-                topics = getTopicList(this, Prefs.getClassId(mContext));
+            topics = getTopicList(this, Prefs.getClassId(mContext));
+        } else {
+            // server is killed (only for test)
+            topics = new ArrayList<>();
+            if (proposition) {
+                topics.add(new Topic(0, "Lab 2", 1, 1));
+                topics.add(new Topic(0, "TP", 1, 2));
             } else {
-                // server is killed (only for test)
-                topics = new ArrayList<>();
-                if (proposition){
-                    topics.add(new Topic(0, "Lab 2", 1, 1));
-                    topics.add(new Topic(0, "TP", 1, 2));
-                }else {
-                    topics.add(new Topic(0, "Lab 3", 1, 1));
-                    topics.add(new Topic(0, "Lab 2", 1, 1));
-                    topics.add(new Topic(0, "Projet", 1, 2));
-                    topics.add(new Topic(0, "Revision", 1, 3));
-                    topics.add(new Topic(0, "TP", 1, 2));
-                }
+                topics.add(new Topic(0, "Lab 3", 1, 1));
+                topics.add(new Topic(0, "Lab 2", 1, 1));
+                topics.add(new Topic(0, "Projet", 1, 2));
+                topics.add(new Topic(0, "Revision", 1, 3));
+                topics.add(new Topic(0, "TP", 1, 2));
             }
+        }
 
-            // Send data to the adapter to display
-            if (topics != null) {
-                // handle recyclerView
-                topicRecyclerView = findViewById(R.id.topicRecyclerView);
-                topicRecyclerView.setHasFixedSize(true);
-                // use a linear layout manager
-                topicLayoutManager = new LinearLayoutManager(this);
-                topicRecyclerView.setLayoutManager(topicLayoutManager);
-                // specify an adapter
-                topicAdapter = new TopicAdapter(topics, this, this.type, mTopicListActivity);
-                topicRecyclerView.setAdapter(topicAdapter);
-            }else{
-                // todo: display "Aucun sujet en cours"
-            }
+        // Send data to the adapter to display
+        if (topics != null) {
+            // handle recyclerView
+            topicRecyclerView = findViewById(R.id.topicRecyclerView);
+            topicRecyclerView.setHasFixedSize(true);
+            // use a linear layout manager
+            topicLayoutManager = new LinearLayoutManager(this);
+            topicRecyclerView.setLayoutManager(topicLayoutManager);
+            // specify an adapter
+            topicAdapter = new TopicAdapter(topics, this, this.type, mTopicListActivity);
+            topicRecyclerView.setAdapter(topicAdapter);
+        } else {
+            // todo: display "Aucun sujet en cours"
         }
     }
 }
