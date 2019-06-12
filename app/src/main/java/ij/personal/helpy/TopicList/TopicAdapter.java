@@ -291,7 +291,7 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                                 if (type.equals("Proposition")){
                                     Toast.makeText(mContext, R.string.toast_add_as_helper, Toast.LENGTH_LONG).show();
                                 }else{
-                                    Toast.makeText(mContext, R.string.toast_add_as_helper, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, R.string.toast_add_as_needer, Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
